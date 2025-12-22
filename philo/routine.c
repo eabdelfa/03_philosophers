@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:17:23 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/22 23:01:44 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,12 @@ void	*philo_routine(void *pointer)
 		print_msg("is sleeping", philo);
 		ft_usleep(philo->data->time_to_sleep, philo->data);
 		print_msg("is thinking", philo);
+		if (philo->data->nb_philos % 2 != 0)
+		{
+			if (philo->data->time_to_eat >= philo->data->time_to_sleep)
+				ft_usleep((philo->data->time_to_eat
+						- philo->data->time_to_sleep) + 10, philo->data);
+		}
 	}
 	return (NULL);
 }

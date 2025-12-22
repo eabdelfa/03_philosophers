@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:56 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:17:23 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/22 22:33:36 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_usleep(long long time, t_data *data)
 	{
 		if (check_dead(data))
 			break ;
-		usleep(500);
+		usleep(100);
 	}
 }
 

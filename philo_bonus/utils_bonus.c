@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:38 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:17:23 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/22 22:31:57 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_usleep(long long time)
 
 	start = get_time();
 	while ((get_time() - start) < time)
-		usleep(500);
+		usleep(100);
 }
 
 void	print_msg(char *str, t_philo *philo)

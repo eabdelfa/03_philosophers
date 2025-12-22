@@ -87,3 +87,7 @@ The project is divided into two parts:
 - **Monitoring**:
   - **Mandatory**: A separate monitor thread checks the state of all philosophers to detect death or completion.
   - **Bonus**: Each philosopher process has its own monitor thread. If a philosopher dies, the process exits with a specific status, which the main process detects to terminate the entire simulation.
+- **Starvation Prevention**:
+  - Implemented a smart thinking delay for odd numbers of philosophers. This ensures that in competitive scenarios (e.g., 3 philosophers), the "odd one out" waits just long enough for the fork rotation to occur, preventing resource starvation.
+- **High-Precision Timing**:
+  - The custom `ft_usleep` function uses a tighter polling interval (100us) to ensure precise adherence to `time_to_die` and `time_to_eat` constraints, minimizing drift in long-running simulations.
