@@ -91,3 +91,8 @@ The project is divided into two parts:
   - Implemented a smart thinking delay for odd numbers of philosophers. This ensures that in competitive scenarios (e.g., 3 philosophers), the "odd one out" waits just long enough for the fork rotation to occur, preventing resource starvation.
 - **High-Precision Timing**:
   - The custom `ft_usleep` function uses a tighter polling interval (100us) to ensure precise adherence to `time_to_die` and `time_to_eat` constraints, minimizing drift in long-running simulations.
+
+## Visualization
+
+You can visualize the output of the simulation using this tool:
+[Philosophers Visualizer](https://rom98759.github.io/Philosophers-visualizer/)
