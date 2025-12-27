@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:44:28 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:05:20 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	init_data(t_data *data, int argc, char **argv)
 int	init_forks(t_data *data)
 {
 	int	i;
+	int	j;
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!data->forks)
@@ -52,8 +53,12 @@ int	init_forks(t_data *data)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 		{
+			j = 0;
+			while (j < i)
+				pthread_mutex_destroy(&data->forks[j++]);
+			free(data->forks);
 			print_error_and_exit("Error: Mutex initialization for \
-				fork failed.\n");
+					fork failed.\n");
 		}
 		i++;
 	}
@@ -79,6 +84,7 @@ static int	init_single_philo(t_data *data, int i)
 int	init_philos(t_data *data)
 {
 	int	i;
+	int	j;
 
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
@@ -91,8 +97,12 @@ int	init_philos(t_data *data)
 	{
 		if (init_single_philo(data, i))
 		{
+			j = 0;
+			while (j < i)
+				pthread_mutex_destroy(&data->philos[j++].meal_lock);
+			free(data->philos);
 			print_error_and_exit("Error: Mutex initialization for \
-				philosopher failed.\n");
+					philosopher failed.\n");
 		}
 		i++;
 	}

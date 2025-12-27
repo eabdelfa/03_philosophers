@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:10:18 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 19:41:13 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	*monitor_routine(void *pointer)
 			sem_wait(philo->data->sem_write);
 			printf("%lld %d died\n", get_time() - philo->data->start_time,
 				philo->id);
+			sem_close(philo->meal_sem);
 			exit(1);
 		}
 		sem_post(philo->meal_sem);
@@ -65,7 +66,10 @@ void	philo_process(t_philo *philo)
 		eat(philo);
 		if (philo->data->must_eat_count != -1
 			&& philo->meals_eaten >= philo->data->must_eat_count)
+		{
+			sem_close(philo->meal_sem);
 			exit(0);
+		}
 		print_msg("is sleeping", philo);
 		ft_usleep(philo->data->time_to_sleep);
 		print_msg("is thinking", philo);

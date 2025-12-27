@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:48:38 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:58:11 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	start_processes(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == -1)
 		{
-			print_error_and_exit("[7] Error: Failed to fork process for \
+			print_error_and_exit("Error: Failed to fork process for \
 				philosopher.\n");
 		}
 		if (data->philos[i].pid == 0)
