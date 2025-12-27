@@ -6,21 +6,26 @@
 #    By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/20 00:04:25 by eabdelfa          #+#    #+#              #
-#    Updated: 2025/12/23 18:59:12 by eabdelfa         ###   ########.fr        #
+#    Updated: 2025/12/27 13:20:58 by eabdelfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -pthread
 # Detect OS
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    CFLAGS += -D LINUX
+	CFLAGS += -D LINUX
 endif
 
-SRCS = main.c utils.c init.c routine.c monitor.c
+CFLAGS += -I$(INCDIR)
+SRCDIR = src
+INCDIR = include
+SRCS = $(SRCDIR)/main.c $(SRCDIR)/utils.c $(SRCDIR)/init.c $(SRCDIR)/routine.c $(SRCDIR)/monitor.c
 OBJS = $(SRCS:.c=.o)
+
 
 all: $(NAME)
 
