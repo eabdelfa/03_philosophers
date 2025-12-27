@@ -28,8 +28,3 @@ void	print_error_and_exit(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-void	error_exit(char *str)
-{
-	printf("%s\n", str);
-	exit(1);
-}
