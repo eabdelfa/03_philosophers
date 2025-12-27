@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 17:13:43 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:48:38 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,8 @@ int	start_processes(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == -1)
 		{
-			handle_error(7, i + 1);
-			kill_all_philos(data);
-			cleanup(data);
-			return (1);
+			print_error_and_exit("[7] Error: Failed to fork process for \
+				philosopher.\n");
 		}
 		if (data->philos[i].pid == 0)
 			philo_process(&data->philos[i]);
@@ -95,9 +93,13 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
-		return (handle_error(1, 0), 1);
+		print_error_and_exit("Usage: ./philo_bonus number_of_philosophers \
+			time_to_die time_to_eat time_to_sleep\n\
+			[number_of_times_each_philosopher_must_eat]\n");
 	if (validate_args(argc, argv))
-		return (handle_error(1, 0), 1);
+		print_error_and_exit("Usage: ./philo_bonus number_of_philosophers \
+			time_to_die time_to_eat time_to_sleep\n\
+			[number_of_times_each_philosopher_must_eat]\n");
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_semaphores(&data))

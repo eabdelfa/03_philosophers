@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 17:14:28 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:13:58 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ int	validate_args(int argc, char **argv)
 		if (i == 1 && (val < 1 || val > 200))
 			return (1);
 		if ((i >= 2 && i <= 4) && val <= 60)
-			return (handle_error(3, 0), 1);
+		{
+			print_error_and_exit("[3] Error: All time arguments must \
+				be greater than 60 ms.\n");
+		}
 		if (i == 5 && val <= 0)
 			return (1);
 		i++;

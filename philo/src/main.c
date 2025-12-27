@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:18 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 17:13:09 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:45:37 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,8 @@ int	start_threads(t_data *data)
 		if (pthread_create(&data->philos[i].thread, NULL, &philo_routine,
 				&data->philos[i]))
 		{
-			handle_error(9, i + 1);
-			set_dead_flag(data);
-			while (--i >= 0)
-				pthread_join(data->philos[i].thread, NULL);
-			return (1);
+			print_error_and_exit("Error: Failed to create thread for \
+				philosopher.\n");
 		}
 		i++;
 	}
@@ -87,9 +84,13 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
-		return (handle_error(1, 0), 1);
+		print_error_and_exit("[1] Usage: ./philo number_of_philosophers \
+			time_to_die time_to_eat time_to_sleep\n\
+			[number_of_times_each_philosopher_must_eat]\n");
 	if (validate_args(argc, argv))
-		return (handle_error(1, 0), 1);
+		print_error_and_exit("[1] Usage: ./philo number_of_philosophers \
+			time_to_die time_to_eat time_to_sleep\n\
+			[number_of_times_each_philosopher_must_eat]\n");
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_forks(&data))

@@ -5,12 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 00:05:38 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 17:22:29 by eabdelfa         ###   ########.fr       */
+/*   Created: 2025/12/27 17:36:36 by eabdelfa          #+#    #+#             */
+/*   Updated: 2025/12/27 18:10:20 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+int	get_len(int n)
+{
+	int	len;
+
+	len = 0;
+	if (n == 0)
+		return (1);
+	while (n > 0)
+	{
+		n /= 10;
+		len++;
+	}
+	return (len);
+}
 
 int	ft_atoi(const char *str)
 {
@@ -59,10 +74,4 @@ void	print_msg(char *str, t_philo *philo)
 	time = get_time() - philo->data->start_time;
 	printf("%lld %d %s\n", time, philo->id, str);
 	sem_post(philo->data->sem_write);
-}
-
-void	error_exit(char *str)
-{
-	printf("%s\n", str);
-	exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 17:22:29 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 18:09:35 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,8 @@ int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
 
 /* error.c */
-void					handle_error(int code, int extra);
+void					print_error_and_exit(const char *msg);
+void					ft_putstr_fd(const char *s, int fd);
 void					destroy_mutexes(t_data *data);
 
 /* init.c */
