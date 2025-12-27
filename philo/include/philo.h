@@ -6,13 +6,14 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:09:35 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:04:44 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+/* Standard Library Includes */
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
@@ -21,6 +22,7 @@
 # include <sys/time.h>
 # include <unistd.h>
 
+/* Type Definitions */
 typedef struct s_data	t_data;
 
 typedef struct s_philo
@@ -50,31 +52,31 @@ struct					s_data
 	t_philo				*philos;
 };
 
-/* utils.c */
+/* Utility Functions (utils.c) */
 int						ft_atoi(const char *str);
 long long				get_time(void);
 void					ft_usleep(long long time, t_data *data);
 void					print_msg(char *str, t_philo *philo);
 
-/* validation.c */
+/* Argument Validation (validation.c) */
 int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
 
-/* error.c */
+/* Error Handling (error.c) */
 void					print_error_and_exit(const char *msg);
 void					ft_putstr_fd(const char *s, int fd);
 void					destroy_mutexes(t_data *data);
 
-/* init.c */
+/* Initialization (init.c) */
 int						init_data(t_data *data, int argc, char **argv);
 int						init_philos(t_data *data);
 int						init_forks(t_data *data);
 void					cleanup(t_data *data);
 
-/* routine.c */
+/* Philosopher Routine (routine.c) */
 void					*philo_routine(void *pointer);
 
-/* monitor.c */
+/* Monitor & State (monitor.c) */
 void					*monitor_routine(void *pointer);
 bool					check_dead(t_data *data);
 void					set_dead_flag(t_data *data);

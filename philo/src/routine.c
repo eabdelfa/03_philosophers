@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 21:32:15 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:04:56 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	eat(t_philo *philo)
 
 /*
 ** philo_routine:
-** Main routine for each philosopher thread. Handles the philosopher's 
+** Main routine for each philosopher thread. Handles the philosopher's
 ** life cycle.
 */
 void	*philo_routine(void *pointer)

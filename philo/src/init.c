@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:04:48 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
 	{
-		print_error_and_exit("Error: Invalid argument values.\n");
+		print_error_and_exit("Error: Arguments must be positive.\n");
 	}
 	data->dead_flag = false;
 	data->forks = NULL;

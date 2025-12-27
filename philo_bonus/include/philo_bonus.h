@@ -6,13 +6,14 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:10:08 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:05:03 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_BONUS_H
 # define PHILO_BONUS_H
 
+/* Standard Library Includes */
 # include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
@@ -25,6 +26,8 @@
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <unistd.h>
+
+/* Type Definitions */
 
 typedef struct s_data	t_data;
 
@@ -51,28 +54,28 @@ struct					s_data
 	t_philo				*philos;
 };
 
-/* utils_bonus.c */
+/* Utility Functions (utils_bonus.c) */
 int						ft_atoi(const char *str);
 long long				get_time(void);
 void					ft_usleep(long long time);
 void					print_msg(char *str, t_philo *philo);
-void					error_exit(char *str);
 int						get_len(int n);
 
-/* validation_bonus.c */
+/* Argument Validation (validation_bonus.c) */
 int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
 
-/* error_bonus.c */
+/* Error Handling (error_bonus.c) */
 void					print_error_and_exit(const char *msg);
 void					ft_putstr_fd(const char *s, int fd);
-/* init_bonus.c */
+
+/* Initialization (init_bonus.c) */
 int						init_data(t_data *data, int argc, char **argv);
 int						init_semaphores(t_data *data);
 void					cleanup(t_data *data);
 void					make_sem_name(char *buffer, int id);
 
-/* routine_bonus.c */
+/* Philosopher Routine (routine_bonus.c) */
 void					philo_process(t_philo *philo);
 
 #endif

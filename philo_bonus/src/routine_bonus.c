@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 21:39:39 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:10:23 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	*monitor_routine(void *philo_ptr)
 /*
 ** eat:
 ** Handles the eating routine for a philosopher,
-	including fork/semaphore locking, eating, and unlocking.
+** including fork/semaphore locking, eating, and unlocking.
 */
 void	eat(t_philo *philo)
 {
@@ -90,6 +90,11 @@ static void	philo_life_loop(t_philo *philo)
 	}
 }
 
+/*
+** philo_process:
+** Entry point for each philosopher process. Starts the monitor thread,
+** applies a stagger for even philosophers, and runs the main life loop.
+*/
 void	philo_process(t_philo *philo)
 {
 	pthread_t	monitor_thread;

@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:15:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 21:49:14 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:11:53 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** is_valid_number:
 ** Checks if a string is a valid positive integer (no leading zeros,
-	max 10 digits, within range).
+** max 10 digits, within range).
 */
 int	is_valid_number(const char *str)
 {
@@ -42,11 +42,6 @@ int	is_valid_number(const char *str)
 }
 
 /*
-** validate_args:
-** Validates all command-line arguments for the philosophers program.
-*/
-
-/*
 ** validate_arg_numeric:
 ** Checks if the argument is a valid positive integer and in range.
 */
@@ -56,13 +51,13 @@ static int	validate_arg_numeric(char *arg)
 
 	if (!is_valid_number(arg))
 	{
-		ft_putstr_fd("Error: Invalid positive integer.\n", 2);
+		ft_putstr_fd("Error: Not a valid positive number.\n", 2);
 		return (1);
 	}
 	val = ft_atoi(arg);
 	if (val > INT_MAX || val <= 0)
 	{
-		ft_putstr_fd("Error: Argument out of range.\n", 2);
+		ft_putstr_fd("Error: Argument out of integer range.\n", 2);
 		return (1);
 	}
 	return (0);
@@ -105,6 +100,11 @@ static int	validate_arg(int i, char *arg)
 	return (validate_arg_range(i, val));
 }
 
+/*
+** validate_args:
+** Validates all command-line arguments for the philosophers program.
+** Returns 1 if any argument is invalid, 0 otherwise.
+*/
 int	validate_args(int argc, char **argv)
 {
 	int	i;

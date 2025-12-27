@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 21:38:13 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:05:11 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	kill_all_philos(t_data *data)
 
 /*
 ** wait_philos:
-** Waits for all philosopher processes to finish, handles early termination 
+** Waits for all philosopher processes to finish, handles early termination
 ** on death.
 */
 void	wait_philos(t_data *data)

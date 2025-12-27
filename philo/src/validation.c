@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 21:49:14 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 23:08:36 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,6 @@ int	is_valid_number(const char *str)
 }
 
 /*
-** validate_args:
-** Validates all command-line arguments for the philosophers program.
-*/
-
-/*
 ** validate_arg_numeric:
 ** Checks if the argument is a valid positive integer and in range.
 */
@@ -56,13 +51,13 @@ int	validate_arg_numeric(const char *arg)
 
 	if (!is_valid_number(arg))
 	{
-		ft_putstr_fd("Error: Invalid positive integer.\n", 2);
+		ft_putstr_fd("Error: Not a valid positive number.\n", 2);
 		return (1);
 	}
 	val = ft_atoi(arg);
 	if (val > INT_MAX || val <= 0)
 	{
-		ft_putstr_fd("Error: Argument out of range.\n", 2);
+		ft_putstr_fd("Error: Argument out of integer range.\n", 2);
 		return (1);
 	}
 	return (0);
