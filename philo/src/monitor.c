@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:34 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:09:51 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+** check_dead:
+** Checks if the simulation's dead flag is set (thread-safe).
+*/
 bool	check_dead(t_data *data)
 {
 	bool	res;
@@ -22,6 +26,10 @@ bool	check_dead(t_data *data)
 	return (res);
 }
 
+/*
+** check_if_dead:
+** Checks if any philosopher has died. Returns the philosopher's id if so, 0 otherwise.
+*/
 int	check_if_dead(t_data *data)
 {
 	int	i;
@@ -41,6 +49,10 @@ int	check_if_dead(t_data *data)
 	return (0);
 }
 
+/*
+** check_if_all_ate:
+** Checks if all philosophers have eaten the required number of times.
+*/
 int	check_if_all_ate(t_data *data)
 {
 	int	i;
@@ -63,6 +75,10 @@ int	check_if_all_ate(t_data *data)
 	return (0);
 }
 
+/*
+** set_dead_flag:
+** Sets the simulation's dead flag (thread-safe).
+*/
 void	set_dead_flag(t_data *data)
 {
 	pthread_mutex_lock(&data->dead_lock);
@@ -70,6 +86,10 @@ void	set_dead_flag(t_data *data)
 	pthread_mutex_unlock(&data->dead_lock);
 }
 
+/*
+** monitor_routine:
+** Monitor thread routine. Detects death or completion and prints status.
+*/
 void	*monitor_routine(void *pointer)
 {
 	t_data	*data;

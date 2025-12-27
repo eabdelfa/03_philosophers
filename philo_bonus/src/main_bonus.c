@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:58:11 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:48:00 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+/*
+** cleanup:
+** Frees all allocated resources and closes/unlinks all semaphores.
+*/
 void	cleanup(t_data *data)
 {
 	int		i;
@@ -32,6 +36,10 @@ void	cleanup(t_data *data)
 	free(data->philos);
 }
 
+/*
+** kill_all_philos:
+** Sends SIGKILL to all philosopher processes.
+*/
 void	kill_all_philos(t_data *data)
 {
 	int	i;
@@ -44,6 +52,10 @@ void	kill_all_philos(t_data *data)
 	}
 }
 
+/*
+** wait_philos:
+** Waits for all philosopher processes to finish, handles early termination on death.
+*/
 void	wait_philos(t_data *data)
 {
 	int	status;
@@ -68,6 +80,10 @@ void	wait_philos(t_data *data)
 	}
 }
 
+/*
+** start_processes:
+** Forks and starts all philosopher processes.
+*/
 int	start_processes(t_data *data)
 {
 	int	i;
@@ -88,6 +104,10 @@ int	start_processes(t_data *data)
 	return (0);
 }
 
+/*
+** main:
+** Entry point. Parses arguments, initializes data, and starts the simulation.
+*/
 int	main(int argc, char **argv)
 {
 	t_data	data;

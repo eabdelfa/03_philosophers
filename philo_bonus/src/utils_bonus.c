@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:36:36 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:10:20 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:48:00 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+/*
+** get_len:
+** Returns the number of digits in an integer (for semaphore name generation).
+*/
 int	get_len(int n)
 {
 	int	len;
@@ -27,6 +31,10 @@ int	get_len(int n)
 	return (len);
 }
 
+/*
+** ft_atoi:
+** Converts a string to an integer (handles optional whitespace and sign).
+*/
 int	ft_atoi(const char *str)
 {
 	long	res;
@@ -48,6 +56,10 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+/*
+** get_time:
+** Returns the current time in milliseconds.
+*/
 long long	get_time(void)
 {
 	struct timeval	tv;
@@ -57,6 +69,10 @@ long long	get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
+/*
+** ft_usleep:
+** Sleeps for the given time in ms (busy-wait), used for timing in simulation.
+*/
 void	ft_usleep(long long time)
 {
 	long long	start;
@@ -66,6 +82,10 @@ void	ft_usleep(long long time)
 		usleep(100);
 }
 
+/*
+** print_msg:
+** Prints a status message for a philosopher using a semaphore for output synchronization.
+*/
 void	print_msg(char *str, t_philo *philo)
 {
 	long long	time;

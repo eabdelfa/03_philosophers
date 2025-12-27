@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:56 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:09:56 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+** ft_atoi:
+** Converts a string to an integer (handles optional whitespace and sign).
+*/
 int	ft_atoi(const char *str)
 {
 	long	res;
@@ -33,6 +37,10 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+/*
+** get_time:
+** Returns the current time in milliseconds.
+*/
 long long	get_time(void)
 {
 	struct timeval	tv;
@@ -44,8 +52,7 @@ long long	get_time(void)
 
 /*
 ** ft_usleep:
-** Sleeps for 'time' milliseconds.
-** Checks for death status periodically to allow immediate termination.
+** Sleeps for the given time in ms, checking for death status periodically.
 */
 void	ft_usleep(long long time, t_data *data)
 {
@@ -60,6 +67,10 @@ void	ft_usleep(long long time, t_data *data)
 	}
 }
 
+/*
+** print_msg:
+** Prints a status message for a philosopher in a thread-safe way.
+*/
 void	print_msg(char *str, t_philo *philo)
 {
 	long long	time;

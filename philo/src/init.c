@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:05:20 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+** init_data:
+** Initializes the t_data structure with arguments and sets up mutexes.
+*/
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_philos = ft_atoi(argv[1]);
@@ -38,6 +42,10 @@ int	init_data(t_data *data, int argc, char **argv)
 	return (0);
 }
 
+/*
+** init_forks:
+** Allocates and initializes the fork mutexes for all philosophers.
+*/
 int	init_forks(t_data *data)
 {
 	int	i;
@@ -65,6 +73,10 @@ int	init_forks(t_data *data)
 	return (0);
 }
 
+/*
+** init_single_philo:
+** Initializes a single philosopher's struct and its meal mutex.
+*/
 static int	init_single_philo(t_data *data, int i)
 {
 	t_philo	*philo;
@@ -81,6 +93,10 @@ static int	init_single_philo(t_data *data, int i)
 	return (0);
 }
 
+/*
+** init_philos:
+** Allocates and initializes all philosopher structs.
+*/
 int	init_philos(t_data *data)
 {
 	int	i;
@@ -109,6 +125,10 @@ int	init_philos(t_data *data)
 	return (0);
 }
 
+/*
+** cleanup:
+** Frees all allocated resources and destroys all mutexes.
+*/
 void	cleanup(t_data *data)
 {
 	int	i;

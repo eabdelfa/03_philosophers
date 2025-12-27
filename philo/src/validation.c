@@ -6,12 +6,17 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 19:00:42 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+** is_valid_number:
+** Checks if a string is a valid positive integer (no leading zeros,
+	max 10 digits, within range).
+*/
 int	is_valid_number(const char *str)
 {
 	int	i;
@@ -36,6 +41,10 @@ int	is_valid_number(const char *str)
 	return (1);
 }
 
+/*
+** validate_args:
+** Validates all command-line arguments for the philosophers program.
+*/
 int	validate_args(int argc, char **argv)
 {
 	long	val;

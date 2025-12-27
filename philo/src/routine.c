@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 18:09:52 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:41:30 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 /*
 ** lock_forks:
-** Implements asymmetric locking to prevent deadlocks.
-** Even philosophers lock right then left.
-** Odd philosophers lock left then right.
+** Locks the forks for a philosopher in an asymmetric order to prevent deadlocks.
+** Even philosophers lock right then left, odd lock left then right.
 */
 void	lock_forks(t_philo *philo)
 {
@@ -36,6 +35,11 @@ void	lock_forks(t_philo *philo)
 	}
 }
 
+/*
+** eat:
+** Handles the eating routine for a philosopher, including fork locking, eating,
+	and unlocking.
+*/
 void	eat(t_philo *philo)
 {
 	if (philo->data->nb_philos == 1)
@@ -57,6 +61,10 @@ void	eat(t_philo *philo)
 	pthread_mutex_unlock(philo->r_fork);
 }
 
+/*
+** philo_routine:
+** Main routine for each philosopher thread. Handles the philosopher's life cycle.
+*/
 void	*philo_routine(void *pointer)
 {
 	t_philo	*philo;

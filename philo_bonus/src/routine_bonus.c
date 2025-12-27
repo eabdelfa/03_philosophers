@@ -6,21 +6,27 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 19:41:13 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:48:00 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-void	*monitor_routine(void *pointer)
+/*
+** monitor_routine:
+** Monitor thread for a philosopher. Detects death and prints status.
+*/
+void	*monitor_routine(void *philo_ptr)
 {
-	t_philo	*philo;
+	t_philo		*philo;
+	long long	time_since_last_meal;
 
-	philo = (t_philo *)pointer;
+	philo = (t_philo *)philo_ptr;
 	while (1)
 	{
 		sem_wait(philo->meal_sem);
-		if (get_time() - philo->last_meal_time >= philo->data->time_to_die)
+		time_since_last_meal = get_time() - philo->last_meal_time;
+		if (time_since_last_meal >= philo->data->time_to_die)
 		{
 			sem_post(philo->meal_sem);
 			sem_wait(philo->data->sem_write);
@@ -35,6 +41,11 @@ void	*monitor_routine(void *pointer)
 	return (NULL);
 }
 
+/*
+** eat:
+** Handles the eating routine for a philosopher,
+	including fork/semaphore locking, eating, and unlocking.
+*/
 void	eat(t_philo *philo)
 {
 	sem_wait(philo->data->sem_forks);
@@ -51,14 +62,18 @@ void	eat(t_philo *philo)
 	sem_post(philo->data->sem_forks);
 }
 
+/*
+** philo_process:
+** Main routine for each philosopher process. Handles the philosopher's life cycle.
+*/
 void	philo_process(t_philo *philo)
 {
-	pthread_t	monitor;
+	pthread_t	monitor_thread;
 
 	philo->last_meal_time = get_time();
-	if (pthread_create(&monitor, NULL, &monitor_routine, philo))
+	if (pthread_create(&monitor_thread, NULL, &monitor_routine, philo))
 		exit(1);
-	pthread_detach(monitor);
+	pthread_detach(monitor_thread);
 	if (philo->id % 2 == 0)
 		ft_usleep(philo->data->time_to_eat / 10);
 	while (1)

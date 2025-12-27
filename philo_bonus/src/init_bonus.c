@@ -6,12 +6,16 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 19:40:03 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 20:45:54 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
+/*
+** make_sem_name:
+** Creates a unique semaphore name for each philosopher.
+*/
 void	make_sem_name(char *buffer, int id)
 {
 	int	i;
@@ -33,6 +37,10 @@ void	make_sem_name(char *buffer, int id)
 	}
 }
 
+/*
+** init_data:
+** Initializes the t_data structure with arguments and allocates philosophers.
+*/
 int	init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_philos = ft_atoi(argv[1]);
@@ -57,6 +65,10 @@ int	init_data(t_data *data, int argc, char **argv)
 	return (0);
 }
 
+/*
+** init_single_philo_sem:
+** Initializes a single philosopher's semaphore for meal tracking.
+*/
 static int	init_single_philo_sem(t_data *data, int i, char *name)
 {
 	data->philos[i].id = i + 1;
@@ -70,6 +82,10 @@ static int	init_single_philo_sem(t_data *data, int i, char *name)
 	return (0);
 }
 
+/*
+** init_philo_sems:
+** Initializes all philosopher semaphores and handles cleanup on failure.
+*/
 int	init_philo_sems(t_data *data)
 {
 	int		i;
@@ -95,6 +111,10 @@ int	init_philo_sems(t_data *data)
 	return (0);
 }
 
+/*
+** init_semaphores:
+** Initializes the main semaphores for forks and writing, and all philosopher semaphores.
+*/
 int	init_semaphores(t_data *data)
 {
 	sem_unlink("/philo_forks");
