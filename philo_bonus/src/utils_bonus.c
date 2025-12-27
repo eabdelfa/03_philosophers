@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:36:36 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:48:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:31:30 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,15 +76,27 @@ long long	get_time(void)
 void	ft_usleep(long long time)
 {
 	long long	start;
+	long long	elapsed;
+	long long	remain;
 
+	elapsed = 0;
 	start = get_time();
-	while ((get_time() - start) < time)
-		usleep(100);
+	elapsed = get_time() - start;
+	while (elapsed < time)
+	{
+		remain = time - elapsed;
+		if (remain > 5)
+			usleep(remain * 500);
+		else
+			usleep(100);
+		elapsed = get_time() - start;
+	}
 }
 
 /*
 ** print_msg:
-** Prints a status message for a philosopher using a semaphore for output synchronization.
+** Prints a status message for a philosopher using a semaphore for output
+** synchronization.
 */
 void	print_msg(char *str, t_philo *philo)
 {

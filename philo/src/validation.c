@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:49:14 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,27 +45,78 @@ int	is_valid_number(const char *str)
 ** validate_args:
 ** Validates all command-line arguments for the philosophers program.
 */
-int	validate_args(int argc, char **argv)
+
+/*
+** validate_arg_numeric:
+** Checks if the argument is a valid positive integer and in range.
+*/
+int	validate_arg_numeric(const char *arg)
 {
 	long	val;
-	int		i;
+
+	if (!is_valid_number(arg))
+	{
+		ft_putstr_fd("Error: Invalid positive integer.\n", 2);
+		return (1);
+	}
+	val = ft_atoi(arg);
+	if (val > INT_MAX || val <= 0)
+	{
+		ft_putstr_fd("Error: Argument out of range.\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
+/*
+** validate_arg_range:
+** Checks if the argument value is within allowed ranges for its position.
+*/
+int	validate_arg_range(int i, long val)
+{
+	if (i == 1 && (val < 1 || val > 200))
+	{
+		ft_putstr_fd("Error: Philosophers must be 1 to 200.\n", 2);
+		return (1);
+	}
+	if ((i >= 2 && i <= 4) && val <= 60)
+	{
+		print_error_and_exit("Error: Time args must be > 60 ms.\n");
+	}
+	if (i == 5 && val <= 0)
+	{
+		ft_putstr_fd("Error: Must eat count must be positive.\n", 2);
+		return (1);
+	}
+	return (0);
+}
+
+/*
+** validate_arg:
+** Validates a single command-line argument by numeric and range checks.
+*/
+int	validate_arg(int i, char *arg)
+{
+	long	val;
+
+	if (validate_arg_numeric(arg))
+		return (1);
+	val = ft_atoi(arg);
+	return (validate_arg_range(i, val));
+}
+
+/*
+** validate_args:
+** Validates all command-line arguments for the philosophers program.
+*/
+int	validate_args(int argc, char **argv)
+{
+	int	i;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (!is_valid_number(argv[i]))
-			return (1);
-		val = ft_atoi(argv[i]);
-		if (val > INT_MAX || val <= 0)
-			return (1);
-		if (i == 1 && (val < 1 || val > 200))
-			return (1);
-		if ((i >= 2 && i <= 4) && val <= 60)
-		{
-			print_error_and_exit("Error: All time arguments must be greater \
-				than 60 ms.\n");
-		}
-		if (i == 5 && val <= 0)
+		if (validate_arg(i, argv[i]))
 			return (1);
 		i++;
 	}

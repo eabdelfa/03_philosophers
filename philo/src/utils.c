@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:56 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:31:24 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,25 @@ long long	get_time(void)
 void	ft_usleep(long long time, t_data *data)
 {
 	long long	start;
+	long long	elapsed;
+	long long	remain;
 
+	elapsed = 0;
 	start = get_time();
-	while ((get_time() - start) < time)
+	while (1)
 	{
-		if (check_dead(data))
+		elapsed = get_time() - start;
+		if (elapsed >= time)
 			break ;
-		usleep(100);
+		{
+			if (check_dead(data))
+				break ;
+			remain = time - elapsed;
+			if (remain > 5)
+				usleep(remain * 500);
+			else
+				usleep(100);
+		}
 	}
 }
 

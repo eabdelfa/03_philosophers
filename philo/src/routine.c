@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:41:30 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:32:15 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	lock_forks(t_philo *philo)
 /*
 ** eat:
 ** Handles the eating routine for a philosopher, including fork locking, eating,
-	and unlocking.
+** and unlocking.
 */
 void	eat(t_philo *philo)
 {
@@ -63,7 +63,8 @@ void	eat(t_philo *philo)
 
 /*
 ** philo_routine:
-** Main routine for each philosopher thread. Handles the philosopher's life cycle.
+** Main routine for each philosopher thread. Handles the philosopher's 
+** life cycle.
 */
 void	*philo_routine(void *pointer)
 {

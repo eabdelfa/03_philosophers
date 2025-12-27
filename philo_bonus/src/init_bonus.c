@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:45:54 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:33:10 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static int	init_single_philo_sem(t_data *data, int i, char *name)
 int	init_philo_sems(t_data *data)
 {
 	int		i;
+	int		j;
 	char	name[30];
 
 	i = 0;
@@ -96,8 +97,9 @@ int	init_philo_sems(t_data *data)
 	{
 		if (init_single_philo_sem(data, i, name))
 		{
-			int j;
-			for (j = 0; j < i; j++) {
+			j = 0;
+			while (j < i)
+			{
 				make_sem_name(name, j + 1);
 				sem_close(data->philos[j].meal_sem);
 				sem_unlink(name);
@@ -113,7 +115,8 @@ int	init_philo_sems(t_data *data)
 
 /*
 ** init_semaphores:
-** Initializes the main semaphores for forks and writing, and all philosopher semaphores.
+** Initializes the main semaphores for forks and writing,
+	and all philosopher semaphores.
 */
 int	init_semaphores(t_data *data)
 {

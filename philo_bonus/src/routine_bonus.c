@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:48:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:39:39 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,11 @@ void	eat(t_philo *philo)
 
 /*
 ** philo_process:
-** Main routine for each philosopher process. Handles the philosopher's life cycle.
+** Main routine for each philosopher process. Handles the philosopher's
+** life cycle.
 */
-void	philo_process(t_philo *philo)
+static void	philo_life_loop(t_philo *philo)
 {
-	pthread_t	monitor_thread;
-
-	philo->last_meal_time = get_time();
-	if (pthread_create(&monitor_thread, NULL, &monitor_routine, philo))
-		exit(1);
-	pthread_detach(monitor_thread);
-	if (philo->id % 2 == 0)
-		ft_usleep(philo->data->time_to_eat / 10);
 	while (1)
 	{
 		eat(philo);
@@ -95,4 +88,17 @@ void	philo_process(t_philo *philo)
 						- philo->data->time_to_sleep) * 1.1);
 		}
 	}
+}
+
+void	philo_process(t_philo *philo)
+{
+	pthread_t	monitor_thread;
+
+	philo->last_meal_time = get_time();
+	if (pthread_create(&monitor_thread, NULL, &monitor_routine, philo))
+		exit(1);
+	pthread_detach(monitor_thread);
+	if (philo->id % 2 == 0)
+		ft_usleep(philo->data->time_to_eat / 10);
+	philo_life_loop(philo);
 }

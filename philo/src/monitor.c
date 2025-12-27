@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:34 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 20:41:56 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 21:24:38 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ bool	check_dead(t_data *data)
 
 /*
 ** check_if_dead:
-** Checks if any philosopher has died. Returns the philosopher's id if so, 0 otherwise.
+** Checks if any philosopher has died. Returns the philosopher's id if so,
+** 0 otherwise.
 */
 int	check_if_dead(t_data *data)
 {

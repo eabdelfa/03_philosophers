@@ -58,6 +58,18 @@ make
 ./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
 ```
 
+#### Optional Argument: `[must_eat_count]`
+
+The last argument `[must_eat_count]` is optional. If provided, the simulation will stop once every philosopher has eaten at least this many times. If omitted, the simulation will only stop when a philosopher dies.
+
+**Example with optional argument:**
+
+```bash
+./philo 5 800 200 200 7
+```
+
+(Each philosopher must eat at least 7 times for the simulation to end.)
+
 **Example:**
 
 ```bash
@@ -86,6 +98,18 @@ make
 ./philo_bonus <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
 ```
 
+#### Optional Argument: `[must_eat_count]`
+
+The last argument `[must_eat_count]` is optional. If provided, the simulation will stop once every philosopher has eaten at least this many times. If omitted, the simulation will only stop when a philosopher dies.
+
+**Example with optional argument:**
+
+```bash
+./philo_bonus 5 800 200 200 7
+```
+
+(Each philosopher must eat at least 7 times for the simulation to end.)
+
 **Example:**
 
 ```bash
@@ -107,8 +131,27 @@ make
 
 ## Visualization
 
-You can visualize the output of the simulation using this tool:
-[Philosophers Visualizer](https://rom98759.github.io/Philosophers-visualizer/)
+### How to Visualize the Output
+
+You can visualize the output of your simulation using the [Philosophers Visualizer](https://rom98759.github.io/Philosophers-visualizer/):
+
+1. **Run your simulation and save the output to a file.**
+
+For example, in the root of your project:
+
+```bash
+./philo/philo 5 800 200 200 7 > output.txt
+# or for the bonus part
+./philo_bonus/philo_bonus 5 800 200 200 7 > output.txt
+```
+
+2. **Open the [Philosophers Visualizer](https://rom98759.github.io/Philosophers-visualizer/) in your browser.**
+
+3. **Upload your `output.txt` file** using the upload button on the visualizer page.
+
+4. **Watch the simulation animation** and analyze the philosophers' behavior interactively.
+
+This tool helps you better understand and debug the timing and synchronization of your solution.
 
 ---
 
