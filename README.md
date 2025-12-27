@@ -4,20 +4,25 @@ This project is a simulation of the classic Dining Philosophers problem, impleme
 
 ## Project Structure
 
-The project is divided into two parts:
+The project is divided into two parts, each with a modern folder structure:
 
 1.  **Mandatory Part (`philo/`)**:
 
-    - Implemented using **threads** (`pthread`) and **mutexes**.
-    - Each philosopher is a thread.
-    - There is one fork between each pair of philosophers.
-    - Mutexes are used to protect the forks and shared resources.
+- Source files are in `philo/src/`
+- Header files are in `philo/include/`
+- Implemented using **threads** (`pthread`) and **mutexes**.
+- Each philosopher is a thread.
+- There is one fork between each pair of philosophers.
+- Mutexes are used to protect the forks and shared resources.
 
 2.  **Bonus Part (`philo_bonus/`)**:
-    - Implemented using **processes** (`fork`) and **semaphores**.
-    - Each philosopher is a separate process.
-    - Forks are represented by a semaphore.
-    - Semaphores are used for synchronization.
+
+- Source files are in `philo_bonus/src/`
+- Header files are in `philo_bonus/include/`
+- Implemented using **processes** (`fork`) and **semaphores**.
+- Each philosopher is a separate process.
+- Forks are represented by a semaphore.
+- Semaphores are used for synchronization.
 
 ## Global Rules
 
@@ -36,48 +41,56 @@ The project is divided into two parts:
 ### Mandatory Part
 
 1.  Navigate to the `philo` directory:
-    ```bash
-    cd philo
-    ```
-2.  Compile the program:
-    ```bash
-    make
-    ```
+
+```bash
+cd philo
+```
+
+2.  Compile the program (Makefile automatically finds sources in `src/` and headers in `include/`):
+
+```bash
+make
+```
+
 3.  Run the simulation:
 
-    ```bash
-    ./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
-    ```
+```bash
+./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
+```
 
-    **Example:**
+**Example:**
 
-    ```bash
-    ./philo 5 800 200 200
-    ```
+```bash
+./philo 5 800 200 200
+```
 
-    (5 philosophers, die after 800ms, eat for 200ms, sleep for 200ms)
+(5 philosophers, die after 800ms, eat for 200ms, sleep for 200ms)
 
 ### Bonus Part
 
 1.  Navigate to the `philo_bonus` directory:
-    ```bash
-    cd philo_bonus
-    ```
-2.  Compile the program:
-    ```bash
-    make
-    ```
+
+```bash
+cd philo_bonus
+```
+
+2.  Compile the program (Makefile automatically finds sources in `src/` and headers in `include/`):
+
+```bash
+make
+```
+
 3.  Run the simulation:
 
-    ```bash
-    ./philo_bonus <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
-    ```
+```bash
+./philo_bonus <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [must_eat_count]
+```
 
-    **Example:**
+**Example:**
 
-    ```bash
-    ./philo_bonus 5 800 200 200
-    ```
+```bash
+./philo_bonus 5 800 200 200
+```
 
 ## Implementation Details
 
@@ -88,11 +101,15 @@ The project is divided into two parts:
   - **Mandatory**: A separate monitor thread checks the state of all philosophers to detect death or completion.
   - **Bonus**: Each philosopher process has its own monitor thread. If a philosopher dies, the process exits with a specific status, which the main process detects to terminate the entire simulation.
 - **Starvation Prevention**:
-  - Implemented a smart thinking delay for odd numbers of philosophers. This ensures that in competitive scenarios (e.g., 3 philosophers), the "odd one out" waits just long enough for the fork rotation to occur, preventing resource starvation.
+  - Smart thinking delays and staggered thread/process starts are implemented to prevent starvation, especially for odd numbers of philosophers.
 - **High-Precision Timing**:
-  - The custom `ft_usleep` function uses a tighter polling interval (100us) to ensure precise adherence to `time_to_die` and `time_to_eat` constraints, minimizing drift in long-running simulations.
+  - The custom `ft_usleep` function uses a tight polling interval to ensure precise adherence to timing constraints, minimizing drift in long-running simulations.
 
 ## Visualization
 
 You can visualize the output of the simulation using this tool:
 [Philosophers Visualizer](https://rom98759.github.io/Philosophers-visualizer/)
+
+---
+
+**Last updated:** December 27, 2025
