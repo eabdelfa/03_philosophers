@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 16:35:11 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 17:13:33 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,13 @@ long long				get_time(void);
 void					ft_usleep(long long time);
 void					print_msg(char *str, t_philo *philo);
 void					error_exit(char *str);
-int						is_numeric_str(const char *str);
-int						validate_args(int argc, char **argv);
-void					handle_error(int code, int extra);
 
+/* validation_bonus.c */
+int						is_valid_number(const char *str);
+int						validate_args(int argc, char **argv);
+
+/* error_bonus.c */
+void					handle_error(int code, int extra);
 /* init_bonus.c */
 int						init_data(t_data *data, int argc, char **argv);
 int						init_semaphores(t_data *data);

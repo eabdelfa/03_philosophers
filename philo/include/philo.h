@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 16:35:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 17:12:40 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,14 @@ int						ft_atoi(const char *str);
 long long				get_time(void);
 void					ft_usleep(long long time, t_data *data);
 void					print_msg(char *str, t_philo *philo);
-void					destroy_mutexes(t_data *data);
-int						is_numeric_str(const char *str);
+
+/* validation.c */
+int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
+
+/* error.c */
 void					handle_error(int code, int extra);
+void					destroy_mutexes(t_data *data);
 
 /* init.c */
 int						init_data(t_data *data, int argc, char **argv);

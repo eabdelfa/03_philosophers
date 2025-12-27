@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 16:38:12 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 17:13:40 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,10 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = -1;
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
-	{
-		handle_error(2, 0);
-		return (1);
-	}
+		return (handle_error(2, 0), 1);
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
-	{
-		handle_error(5, 0);
-		return (1);
-	}
+		return (handle_error(5, 0), 1);
 	return (0);
 }
 

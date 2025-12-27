@@ -22,7 +22,7 @@ endif
 CFLAGS += -I$(INCDIR)
 SRCDIR = src
 INCDIR = include
-SRCS = $(SRCDIR)/main_bonus.c $(SRCDIR)/utils_bonus.c $(SRCDIR)/init_bonus.c $(SRCDIR)/routine_bonus.c
+SRCS = $(SRCDIR)/main_bonus.c $(SRCDIR)/utils_bonus.c $(SRCDIR)/init_bonus.c $(SRCDIR)/routine_bonus.c $(SRCDIR)/error_bonus.c $(SRCDIR)/validation_bonus.c
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

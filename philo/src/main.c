@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:18 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 16:26:12 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 17:13:09 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,15 +87,9 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
-	{
-		handle_error(1, 0);
-		return (1);
-	}
+		return (handle_error(1, 0), 1);
 	if (validate_args(argc, argv))
-	{
-		handle_error(1, 0);
-		return (1);
-	}
+		return (handle_error(1, 0), 1);
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_forks(&data))

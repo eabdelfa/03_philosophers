@@ -23,7 +23,7 @@ endif
 CFLAGS += -I$(INCDIR)
 SRCDIR = src
 INCDIR = include
-SRCS = $(SRCDIR)/main.c $(SRCDIR)/utils.c $(SRCDIR)/init.c $(SRCDIR)/routine.c $(SRCDIR)/monitor.c
+SRCS = $(SRCDIR)/main.c $(SRCDIR)/utils.c $(SRCDIR)/init.c $(SRCDIR)/routine.c $(SRCDIR)/monitor.c $(SRCDIR)/error.c $(SRCDIR)/validation.c
 OBJS = $(SRCS:.c=.o)
 
 
