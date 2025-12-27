@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:38:42 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 16:38:12 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,16 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = -1;
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
+	{
+		handle_error(2, 0);
 		return (1);
+	}
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
+	{
+		handle_error(5, 0);
 		return (1);
+	}
 	return (0);
 }
 
@@ -83,6 +89,7 @@ int	init_philo_sems(t_data *data)
 		data->philos[i].meal_sem = sem_open(name, O_CREAT, 0644, 1);
 		if (data->philos[i].meal_sem == SEM_FAILED)
 		{
+			handle_error(6, i + 1);
 			while (--i >= 0)
 			{
 				sem_close(data->philos[i].meal_sem);
@@ -104,6 +111,7 @@ int	init_semaphores(t_data *data)
 	data->sem_write = sem_open("/philo_write", O_CREAT, 0644, 1);
 	if (data->sem_forks == SEM_FAILED || data->sem_write == SEM_FAILED)
 	{
+		handle_error(4, 0);
 		if (data->sem_forks != SEM_FAILED)
 			sem_close(data->sem_forks);
 		if (data->sem_write != SEM_FAILED)

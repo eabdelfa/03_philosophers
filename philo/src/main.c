@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:18 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:38:42 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 16:26:12 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	start_threads(t_data *data)
 		if (pthread_create(&data->philos[i].thread, NULL, &philo_routine,
 				&data->philos[i]))
 		{
+			handle_error(9, i + 1);
 			set_dead_flag(data);
 			while (--i >= 0)
 				pthread_join(data->philos[i].thread, NULL);
@@ -68,12 +69,33 @@ int	run_simulation(t_data *data)
 	return (0);
 }
 
+int	is_numeric_str(const char *str)
+{
+	if (!str || !*str)
+		return (0);
+	while (*str)
+	{
+		if (*str < '0' || *str > '9')
+			return (0);
+		str++;
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
+	{
+		handle_error(1, 0);
 		return (1);
+	}
+	if (validate_args(argc, argv))
+	{
+		handle_error(1, 0);
+		return (1);
+	}
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_forks(&data))

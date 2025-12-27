@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:22:01 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 16:26:00 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,19 @@ int	init_data(t_data *data, int argc, char **argv)
 		data->must_eat_count = -1;
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
+	{
+		handle_error(2, 0);
 		return (1);
+	}
 	data->dead_flag = false;
 	data->forks = NULL;
 	data->philos = NULL;
-	pthread_mutex_init(&data->dead_lock, NULL);
-	pthread_mutex_init(&data->write_lock, NULL);
+	if (pthread_mutex_init(&data->dead_lock, NULL) != 0
+		|| pthread_mutex_init(&data->write_lock, NULL) != 0)
+	{
+		handle_error(4, 0);
+		return (1);
+	}
 	return (0);
 }
 
@@ -39,12 +46,16 @@ int	init_forks(t_data *data)
 
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!data->forks)
+	{
+		handle_error(5, 0);
 		return (1);
+	}
 	i = 0;
 	while (i < data->nb_philos)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL) != 0)
 		{
+			handle_error(6, i);
 			while (--i >= 0)
 				pthread_mutex_destroy(&data->forks[i]);
 			free(data->forks);
@@ -62,7 +73,10 @@ int	init_philos(t_data *data)
 
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
+	{
+		handle_error(7, 0);
 		return (1);
+	}
 	i = 0;
 	while (i < data->nb_philos)
 	{
@@ -74,6 +88,7 @@ int	init_philos(t_data *data)
 		data->philos[i].r_fork = &data->forks[(i + 1) % data->nb_philos];
 		if (pthread_mutex_init(&data->philos[i].meal_lock, NULL) != 0)
 		{
+			handle_error(8, i + 1);
 			while (--i >= 0)
 				pthread_mutex_destroy(&data->philos[i].meal_lock);
 			free(data->philos);

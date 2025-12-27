@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/20 00:38:42 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/27 16:37:57 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	start_processes(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == -1)
 		{
+			handle_error(7, i + 1);
 			kill_all_philos(data);
 			cleanup(data);
 			return (1);
@@ -94,7 +95,15 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
+	{
+		handle_error(1, 0);
 		return (1);
+	}
+	if (validate_args(argc, argv))
+	{
+		handle_error(1, 0);
+		return (1);
+	}
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_semaphores(&data))
