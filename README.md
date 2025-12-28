@@ -23,6 +23,7 @@ The project is divided into two parts, each with a modern folder structure:
 - Each philosopher is a separate process.
 - Forks are represented by a semaphore.
 - Semaphores are used for synchronization.
+- Clean exit is handled using a shared stop flag.
 
 ## Global Rules
 
@@ -35,6 +36,19 @@ The project is divided into two parts, each with a modern folder structure:
   - `time_to_eat`: Time in milliseconds it takes for a philosopher to eat.
   - `time_to_sleep`: Time in milliseconds a philosopher spends sleeping.
   - `number_of_times_each_philosopher_must_eat` (optional): If all philosophers have eaten at least this many times, the simulation stops.
+
+## Allowed System Functions
+
+The following system/library functions are used, in compliance with 42 project rules:
+
+- memset, printf, malloc, free, write
+- usleep, gettimeofday
+- pthread_create, pthread_detach, pthread_join
+- pthread_mutex_init, pthread_mutex_destroy, pthread_mutex_lock, pthread_mutex_unlock
+- exit (for error handling and process exit)
+- (Bonus) fork, waitpid, WIFEXITED, WEXITSTATUS (process management)
+- (Bonus) sem_open, sem_close, sem_unlink, sem_wait, sem_post (semaphores)
+- (Bonus) O_CREAT, SEM_FAILED (semaphore flags/constants)
 
 ## Compilation and Usage
 
@@ -123,7 +137,7 @@ The last argument `[must_eat_count]` is optional. If provided, the simulation wi
   - **Bonus**: Semaphores naturally handle the resource counting, and the system scheduler manages process execution.
 - **Monitoring**:
   - **Mandatory**: A separate monitor thread checks the state of all philosophers to detect death or completion.
-  - **Bonus**: Each philosopher process has its own monitor thread. If a philosopher dies, the process exits with a specific status, which the main process detects to terminate the entire simulation.
+  - **Bonus**: Each philosopher process has its own monitor thread. If a philosopher dies, the process exits with a specific status, which the main process detects to terminate the entire simulation. Clean exit is handled using a shared stop flag.
 - **Starvation Prevention**:
   - Smart thinking delays and staggered thread/process starts are implemented to prevent starvation, especially for odd numbers of philosophers.
 - **High-Precision Timing**:
@@ -155,4 +169,4 @@ This tool helps you better understand and debug the timing and synchronization o
 
 ---
 
-**Last updated:** December 27, 2025
+**Last updated:** December 28, 2025
