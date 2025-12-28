@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:08:36 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 01:54:26 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,16 +72,17 @@ int	validate_arg_range(int i, long val)
 	if (i == 1 && (val < 1 || val > 200))
 	{
 		ft_putstr_fd("Error: Philosophers must be 1 to 200.\n", 2);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	if ((i >= 2 && i <= 4) && val <= 60)
 	{
-		print_error_and_exit("Error: Time args must be > 60 ms.\n");
+		ft_putstr_fd("Error: Time args must be > 60 ms.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	if (i == 5 && val <= 0)
 	{
 		ft_putstr_fd("Error: Must eat count must be positive.\n", 2);
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }

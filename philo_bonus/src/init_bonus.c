@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:09:18 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:19:12 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
 	{
-		print_error_and_exit("Error: Arguments must be positive.\n");
+		ft_putstr_fd("Error: Arguments must be positive.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
 	{
-		print_error_and_exit("Error: Memory allocation for philosophers \
-			failed.\n");
+		ft_putstr_fd("Error: Memory allocation for philosophers failed.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -105,8 +106,9 @@ int	init_philo_sems(t_data *data)
 				sem_unlink(name);
 			}
 			free(data->philos);
-			print_error_and_exit("Error: Semaphore initialization for \
-				philosopher failed.\n");
+			ft_putstr_fd("Error: Semaphore initialization for philosopher failed.\n",
+				2);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -126,7 +128,8 @@ int	init_semaphores(t_data *data)
 	data->sem_write = sem_open("/philo_write", O_CREAT, 0644, 1);
 	if (data->sem_forks == SEM_FAILED || data->sem_write == SEM_FAILED)
 	{
-		print_error_and_exit("Error: Semaphore initialization failed.\n");
+		ft_putstr_fd("Error: Semaphore initialization failed.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	if (init_philo_sems(data))
 	{

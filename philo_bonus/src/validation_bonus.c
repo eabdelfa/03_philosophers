@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:15:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 19:06:19 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 01:43:39 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	validate_arg_range(int i, long val)
 	}
 	if ((i >= 2 && i <= 4) && val <= 60)
 	{
-		print_error_and_exit("Error: Time args must be > 60 ms.\n");
+		ft_putstr_fd("Error: Time args must be > 60 ms.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	if (i == 5 && val <= 0)
 	{

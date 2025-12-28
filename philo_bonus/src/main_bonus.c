@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 20:46:15 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:15:17 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ int	start_processes(t_data *data)
 		data->philos[i].pid = fork();
 		if (data->philos[i].pid == -1)
 		{
-			print_error_and_exit("Error: Failed to fork process for \
-				philosopher.\n");
+			ft_putstr_fd("Error: Failed to fork process for philosopher.\n", 2);
+			exit(EXIT_FAILURE);
 		}
 		if (data->philos[i].pid == 0)
 			philo_process(&data->philos[i]);
@@ -98,13 +98,15 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (argc != 5 && argc != 6)
-		print_error_and_exit("Usage: ./philo_bonus number_of_philosophers \
-			time_to_die time_to_eat time_to_sleep\n\
-			[number_of_times_each_philosopher_must_eat]\n");
+	{
+		ft_putstr_fd("Usage:\n"
+						"./philo_bonus number_of_philosophers time_to_die time_to_eat"
+						"time_to_sleep [number_of_times_each_philosopher_must_eat]\n",
+						2);
+		exit(EXIT_FAILURE);
+	}
 	if (validate_args(argc, argv))
-		print_error_and_exit("Usage: ./philo_bonus number_of_philosophers \
-			time_to_die time_to_eat time_to_sleep\n\
-			[number_of_times_each_philosopher_must_eat]\n");
+		exit(EXIT_FAILURE);
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_semaphores(&data))

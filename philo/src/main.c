@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:18 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:04:49 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:11:47 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ int	start_threads(t_data *data)
 		if (pthread_create(&data->philos[i].thread, NULL, &philo_routine,
 				&data->philos[i]))
 		{
-			print_error_and_exit("Error: Failed to create thread for \
-				philosopher.\n");
+			ft_putstr_fd("Error: Failed to create thread for philosopher.\n",
+				2);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -101,16 +102,16 @@ int	is_numeric_str(const char *str)
 */
 int	main(int argc, char **argv)
 {
-	t_data	data;
-
+	t_data data;
 	if (argc != 5 && argc != 6)
-		print_error_and_exit("[1] Usage: ./philo number_of_philosophers \
-			time_to_die time_to_eat time_to_sleep\n\
-			[number_of_times_each_philosopher_must_eat]\n");
+	{
+		ft_putstr_fd("Usage:\n"
+			"./philo_bonus number_of_philosophers time_to_die time_to_eat"
+			" time_to_sleep [number_of_times_each_philosopher_must_eat]\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	if (validate_args(argc, argv))
-		print_error_and_exit("[1] Usage: ./philo number_of_philosophers \
-			time_to_die time_to_eat time_to_sleep\n\
-			[number_of_times_each_philosopher_must_eat]\n");
+		exit(EXIT_FAILURE);
 	if (init_data(&data, argc, argv))
 		return (1);
 	if (init_forks(&data))

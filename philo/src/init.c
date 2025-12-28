@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:04:48 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 01:48:35 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (data->nb_philos <= 0 || data->time_to_die < 0 || data->time_to_eat < 0
 		|| data->time_to_sleep < 0)
 	{
-		print_error_and_exit("Error: Arguments must be positive.\n");
+		ft_putstr_fd("Error: Arguments must be positive.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	data->dead_flag = false;
 	data->forks = NULL;
@@ -37,7 +38,8 @@ int	init_data(t_data *data, int argc, char **argv)
 	if (pthread_mutex_init(&data->dead_lock, NULL) != 0
 		|| pthread_mutex_init(&data->write_lock, NULL) != 0)
 	{
-		print_error_and_exit("Error: Mutex initialization failed.\n");
+		ft_putstr_fd("Error: Mutex initialization failed.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
@@ -54,7 +56,8 @@ int	init_forks(t_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->nb_philos);
 	if (!data->forks)
 	{
-		print_error_and_exit("Error: Memory allocation for forks failed.\n");
+		ft_putstr_fd("Error: Memory allocation for forks failed.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	i = 0;
 	while (i < data->nb_philos)
@@ -65,8 +68,8 @@ int	init_forks(t_data *data)
 			while (j < i)
 				pthread_mutex_destroy(&data->forks[j++]);
 			free(data->forks);
-			print_error_and_exit("Error: Mutex initialization for \
-					fork failed.\n");
+			ft_putstr_fd("Error: Mutex initialization for fork failed.\n", 2);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
@@ -105,8 +108,8 @@ int	init_philos(t_data *data)
 	data->philos = malloc(sizeof(t_philo) * data->nb_philos);
 	if (!data->philos)
 	{
-		print_error_and_exit("Error: Memory allocation for \
-			philosophers failed.\n");
+		ft_putstr_fd("Error: Memory allocation for philosophers failed.\n", 2);
+		exit(EXIT_FAILURE);
 	}
 	i = 0;
 	while (i < data->nb_philos)
@@ -117,35 +120,11 @@ int	init_philos(t_data *data)
 			while (j < i)
 				pthread_mutex_destroy(&data->philos[j++].meal_lock);
 			free(data->philos);
-			print_error_and_exit("Error: Mutex initialization for \
-					philosopher failed.\n");
+			ft_putstr_fd("Error: Mutex initialization for philosopher failed.\n",
+				2);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 	return (0);
-}
-
-/*
-** cleanup:
-** Frees all allocated resources and destroys all mutexes.
-*/
-void	cleanup(t_data *data)
-{
-	int	i;
-
-	if (data->forks)
-	{
-		i = 0;
-		while (i < data->nb_philos)
-			pthread_mutex_destroy(&data->forks[i++]);
-		free(data->forks);
-	}
-	if (data->philos)
-	{
-		i = 0;
-		while (i < data->nb_philos)
-			pthread_mutex_destroy(&data->philos[i++].meal_lock);
-		free(data->philos);
-	}
-	destroy_mutexes(data);
 }

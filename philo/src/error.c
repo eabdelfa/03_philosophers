@@ -6,25 +6,11 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:05 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 18:38:29 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:16:32 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-/*
-** ft_strlen:
-** Returns the length of a string.
-*/
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
-}
 
 /*
 ** ft_putstr_fd:
@@ -38,16 +24,6 @@ void	ft_putstr_fd(const char *s, int fd)
 }
 
 /*
-** print_error_and_exit:
-** Prints an error message to stderr and exits the program.
-*/
-void	print_error_and_exit(const char *msg)
-{
-	ft_putstr_fd(msg, 2);
-	exit(EXIT_FAILURE);
-}
-
-/*
 ** destroy_mutexes:
 ** Destroys the main mutexes in the data structure.
 */
@@ -55,4 +31,29 @@ void	destroy_mutexes(t_data *data)
 {
 	pthread_mutex_destroy(&data->dead_lock);
 	pthread_mutex_destroy(&data->write_lock);
+}
+
+/*
+** cleanup:
+** Frees all allocated resources and destroys all mutexes.
+*/
+void	cleanup(t_data *data)
+{
+	int	i;
+
+	if (data->forks)
+	{
+		i = 0;
+		while (i < data->nb_philos)
+			pthread_mutex_destroy(&data->forks[i++]);
+		free(data->forks);
+	}
+	if (data->philos)
+	{
+		i = 0;
+		while (i < data->nb_philos)
+			pthread_mutex_destroy(&data->philos[i++].meal_lock);
+		free(data->philos);
+	}
+	destroy_mutexes(data);
 }
