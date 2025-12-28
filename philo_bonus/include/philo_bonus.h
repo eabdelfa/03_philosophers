@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:05:03 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:31:27 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,17 @@
 # define PHILO_BONUS_H
 
 /* Standard Library Includes */
-# include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
 # include <semaphore.h>
-# include <signal.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <sys/stat.h>
 # include <sys/time.h>
 # include <sys/wait.h>
 # include <unistd.h>
 
 /* Type Definitions */
-
 typedef struct s_data	t_data;
 
 typedef struct s_philo
@@ -64,6 +60,9 @@ int						get_len(int n);
 /* Argument Validation (validation_bonus.c) */
 int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
+int						validate_arg_numeric(const char *str);
+int						validate_arg_range(int i, long val);
+int						validate_arg(int i, char *arg);
 
 /* Error Handling (error_bonus.c) */
 void					print_error_and_exit(const char *msg);
@@ -77,5 +76,6 @@ void					make_sem_name(char *buffer, int id);
 
 /* Philosopher Routine (routine_bonus.c) */
 void					philo_process(t_philo *philo);
+void					*monitor_routine(void *philo_ptr);
 
 #endif

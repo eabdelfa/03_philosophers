@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:04:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:34:38 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <pthread.h>
 # include <stdbool.h>
+# include <stddef.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <sys/time.h>
@@ -57,10 +58,14 @@ int						ft_atoi(const char *str);
 long long				get_time(void);
 void					ft_usleep(long long time, t_data *data);
 void					print_msg(char *str, t_philo *philo);
+size_t					ft_strlen(const char *str);
 
 /* Argument Validation (validation.c) */
 int						is_valid_number(const char *str);
 int						validate_args(int argc, char **argv);
+int						validate_arg_numeric(const char *arg);
+int						validate_arg_range(int i, long val);
+int						validate_arg(int i, char *arg);
 
 /* Error Handling (error.c) */
 void					print_error_and_exit(const char *msg);
@@ -75,10 +80,13 @@ void					cleanup(t_data *data);
 
 /* Philosopher Routine (routine.c) */
 void					*philo_routine(void *pointer);
+void					lock_forks(t_philo *philo);
+void					eat(t_philo *philo);
 
 /* Monitor & State (monitor.c) */
 void					*monitor_routine(void *pointer);
 bool					check_dead(t_data *data);
 void					set_dead_flag(t_data *data);
+int						check_if_dead(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:15:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:11:53 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 19:06:19 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	is_valid_number(const char *str)
 ** validate_arg_numeric:
 ** Checks if the argument is a valid positive integer and in range.
 */
-static int	validate_arg_numeric(char *arg)
+
+int	validate_arg_numeric(const char *arg)
 {
 	long	val;
 
@@ -67,7 +68,7 @@ static int	validate_arg_numeric(char *arg)
 ** validate_arg_range:
 ** Checks if the argument value is within allowed ranges for its position.
 */
-static int	validate_arg_range(int i, long val)
+int	validate_arg_range(int i, long val)
 {
 	if (i == 1 && (val < 1 || val > 200))
 	{
@@ -90,7 +91,7 @@ static int	validate_arg_range(int i, long val)
 ** validate_arg:
 ** Validates a single command-line argument by numeric and range checks.
 */
-static int	validate_arg(int i, char *arg)
+int	validate_arg(int i, char *arg)
 {
 	long	val;
 

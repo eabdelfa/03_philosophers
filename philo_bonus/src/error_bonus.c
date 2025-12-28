@@ -6,14 +6,25 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:41 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:05:05 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:38:54 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+
+/*
+** ft_strlen:
+** Returns the length of a string.
+*/
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
 
 /*
 ** ft_putstr_fd:
@@ -23,7 +34,7 @@ void	ft_putstr_fd(const char *s, int fd)
 {
 	if (!s)
 		return ;
-	write(fd, s, strlen(s));
+	write(fd, s, ft_strlen(s));
 }
 
 /*
