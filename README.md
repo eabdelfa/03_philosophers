@@ -31,11 +31,26 @@ The project is divided into two parts, each with a modern folder structure:
 - The program takes the following arguments:
   `number_of_philosophers` `time_to_die` `time_to_eat` `time_to_sleep` `[number_of_times_each_philosopher_must_eat]`
 
-  - `number_of_philosophers`: The number of philosophers and also the number of forks.
-  - `time_to_die`: Time in milliseconds. If a philosopher doesn't start eating 'time_to_die' ms after the start of their last meal or the start of the simulation, they die.
-  - `time_to_eat`: Time in milliseconds it takes for a philosopher to eat.
-  - `time_to_sleep`: Time in milliseconds a philosopher spends sleeping.
-  - `number_of_times_each_philosopher_must_eat` (optional): If all philosophers have eaten at least this many times, the simulation stops.
+  - `number_of_philosophers`: The number of philosophers and also the number of forks. Must be between 1 and 200 (inclusive).
+  - `time_to_die`: Time in milliseconds. If a philosopher doesn't start eating 'time_to_die' ms after the start of their last meal or the start of the simulation, they die. Must be > 60.
+  - `time_to_eat`: Time in milliseconds it takes for a philosopher to eat. Must be > 60.
+  - `time_to_sleep`: Time in milliseconds a philosopher spends sleeping. Must be > 60.
+  - `number_of_times_each_philosopher_must_eat` (optional): If all philosophers have eaten at least this many times, the simulation stops. Must be positive.
+
+### Error Handling
+
+- All arguments are validated at startup. If any argument is invalid, a clear error message is printed to stderr and the program exits with a failure code.
+- Error messages include:
+  - Usage message for wrong argument count
+  - All arguments must be positive and less than INT_MAX
+  - Philosopher count must be between 1 and 200
+  - Time arguments must be greater than 60 ms
+  - Optional eat count must be positive
+
+### Build & Clean
+
+- Use `make` in `philo/` or `philo_bonus/` to build each part.
+- Use `make fclean` to remove all build artifacts.
 
 ## Allowed System Functions
 

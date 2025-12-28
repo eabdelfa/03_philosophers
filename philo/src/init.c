@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 01:48:35 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:35:06 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,8 +120,8 @@ int	init_philos(t_data *data)
 			while (j < i)
 				pthread_mutex_destroy(&data->philos[j++].meal_lock);
 			free(data->philos);
-			ft_putstr_fd("Error: Mutex initialization for philosopher failed.\n",
-				2);
+			ft_putstr_fd("Error: Mutex initialization for ", 2);
+			ft_putstr_fd("philosopher failed.\n", 2);
 			exit(EXIT_FAILURE);
 		}
 		i++;

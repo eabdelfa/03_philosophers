@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:02 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:19:12 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:37:34 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ int	init_philo_sems(t_data *data)
 				sem_unlink(name);
 			}
 			free(data->philos);
-			ft_putstr_fd("Error: Semaphore initialization for philosopher failed.\n",
-				2);
+			ft_putstr_fd("Error: Semaphore initialization for ", 2);
+			ft_putstr_fd("philosopher failed.\n", 2);
 			exit(EXIT_FAILURE);
 		}
 		i++;

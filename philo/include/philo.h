@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 21:56:46 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:34:04 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int						validate_arg_range(int i, long val);
 int						validate_arg(int i, char *arg);
 
 /* Error Handling (error.c) */
-void					print_error_and_exit(const char *msg);
 void					ft_putstr_fd(const char *s, int fd);
 void					destroy_mutexes(t_data *data);
 void					cleanup(t_data *data);
