@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:56 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 21:51:03 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:54:07 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,18 +94,4 @@ void	print_msg(char *str, t_philo *philo)
 		printf("%lld %d %s\n", time, philo->id, str);
 	}
 	pthread_mutex_unlock(&philo->data->write_lock);
-}
-
-/*
-** ft_strlen:
-** Returns the length of a string.
-*/
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
 }

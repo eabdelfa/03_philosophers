@@ -6,11 +6,25 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:05 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:21:33 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 02:53:46 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+/*
+** ft_strlen:
+** Returns the length of a string.
+*/
+size_t	ft_strlen(const char *str)
+{
+	size_t	i;
+
+	i = 0;
+	while (str && str[i])
+		i++;
+	return (i);
+}
 
 /*
 ** ft_putstr_fd:
