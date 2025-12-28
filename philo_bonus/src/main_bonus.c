@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:05:11 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 20:46:15 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ void	cleanup(t_data *data)
 }
 
 /*
-** kill_all_philos:
-** Sends SIGKILL to all philosopher processes.
-*/
-void	kill_all_philos(t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i < data->nb_philos)
-	{
-		kill(data->philos[i].pid, SIGKILL);
-		i++;
-	}
-}
-
-/*
 ** wait_philos:
 ** Waits for all philosopher processes to finish, handles early termination
 ** on death.
@@ -70,7 +54,7 @@ void	wait_philos(t_data *data)
 		{
 			if (WEXITSTATUS(status) == 1)
 			{
-				kill_all_philos(data);
+				data->stop_flag = 1;
 				return ;
 			}
 			else if (WEXITSTATUS(status) == 0)
@@ -128,6 +112,7 @@ int	main(int argc, char **argv)
 		free(data.philos);
 		return (1);
 	}
+	data.stop_flag = 0;
 	data.start_time = get_time();
 	if (start_processes(&data))
 		return (1);

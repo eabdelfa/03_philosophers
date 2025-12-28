@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/28 18:31:27 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 20:44:09 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ struct					s_data
 	sem_t				*sem_forks;
 	sem_t				*sem_write;
 	t_philo				*philos;
+	volatile int		stop_flag;
 };
 
 /* Utility Functions (utils_bonus.c) */

@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/27 23:10:23 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/28 20:44:09 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,11 @@ static void	philo_life_loop(t_philo *philo)
 {
 	while (1)
 	{
+		if (philo->data->stop_flag)
+		{
+			sem_close(philo->meal_sem);
+			exit(0);
+		}
 		eat(philo);
 		if (philo->data->must_eat_count != -1
 			&& philo->meals_eaten >= philo->data->must_eat_count)
