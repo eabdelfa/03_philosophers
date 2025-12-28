@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 17:14:26 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:54:14 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 03:03:04 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ int	is_valid_number(const char *str)
 		i++;
 	}
 	if (i > 10)
-		return (0);
-	if (i == 10 && str[0] > '2')
-		return (0);
-	if (i == 10 && str[0] == '2' && str[1] > '1')
 		return (0);
 	return (1);
 }

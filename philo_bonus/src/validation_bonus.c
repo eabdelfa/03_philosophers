@@ -32,12 +32,8 @@ int	is_valid_number(const char *str)
 			return (0);
 		i++;
 	}
-	if (i > 10)
-		return (0);
-	if (i == 10 && str[0] > '2')
-		return (0);
-	if (i == 10 && str[0] == '2' && str[1] > '1')
-		return (0);
+	       if (i > 10)
+		       return (0);
 	return (1);
 }
 
