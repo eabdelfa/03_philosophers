@@ -155,7 +155,7 @@ The last argument `[must_eat_count]` is optional. If provided, the simulation wi
   - **Bonus**: Each philosopher process has its own monitor thread. If a philosopher dies, the process exits with a specific status, which the main process detects to terminate the entire simulation. Clean exit is handled using a shared stop flag.
 - **Starvation Prevention**:
   - Smart thinking delays and staggered thread/process starts are implemented to prevent starvation, especially for odd numbers of philosophers.
-**High-Precision Timing**:
+    **High-Precision Timing**:
   - The custom `ft_usleep` function uses a tight polling interval (250 microseconds) to ensure precise adherence to timing constraints and fast responsiveness to death detection, minimizing drift and program exit delay in long-running simulations.
 
 ## Visualization
