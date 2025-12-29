@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 05:12:21 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:53:40 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PHILO_BONUS_H
 
 /* Standard Library Includes */
+# include <fcntl.h>
 # include <limits.h>
 # include <pthread.h>
 # include <semaphore.h>
