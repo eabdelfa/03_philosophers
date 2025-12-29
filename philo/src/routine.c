@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:54:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:15:54 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,44 @@ void	eat(t_philo *philo)
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->meal_lock);
 	ft_usleep(philo->data->time_to_eat, philo->data);
-	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
+	pthread_mutex_unlock(philo->l_fork);
+}
+
+/*
+** philo_cycle:
+** Handles one full cycle of a philosopher's
+** life cycle.
+*/
+static int	philo_cycle(t_philo *philo)
+{
+	eat(philo);
+	if (check_dead(philo->data))
+		return (1);
+	if (philo->data->must_eat_count != -1
+		&& philo->meals_eaten >= philo->data->must_eat_count)
+		return (1);
+	print_msg("is sleeping", philo);
+	if (check_dead(philo->data))
+		return (1);
+	ft_usleep(philo->data->time_to_sleep, philo->data);
+	if (check_dead(philo->data))
+		return (1);
+	print_msg("is thinking", philo);
+	if (check_dead(philo->data))
+		return (1);
+	if (philo->data->nb_philos % 2 != 0)
+	{
+		if (philo->data->time_to_eat >= philo->data->time_to_sleep)
+			ft_usleep((philo->data->time_to_eat - philo->data->time_to_sleep)
+				+ 10, philo->data);
+	}
+	return (0);
 }
 
 /*
 ** philo_routine:
-** Main routine for each philosopher thread. Handles the philosopher's
+** The main routine for each philosopher thread, managing their
 ** life cycle.
 */
 void	*philo_routine(void *pointer)
@@ -75,19 +106,8 @@ void	*philo_routine(void *pointer)
 		ft_usleep(1, philo->data);
 	while (!check_dead(philo->data))
 	{
-		eat(philo);
-		if (philo->data->must_eat_count != -1
-			&& philo->meals_eaten >= philo->data->must_eat_count)
+		if (philo_cycle(philo))
 			break ;
-		print_msg("is sleeping", philo);
-		ft_usleep(philo->data->time_to_sleep, philo->data);
-		print_msg("is thinking", philo);
-		if (philo->data->nb_philos % 2 != 0)
-		{
-			if (philo->data->time_to_eat >= philo->data->time_to_sleep)
-				ft_usleep((philo->data->time_to_eat
-						- philo->data->time_to_sleep) + 10, philo->data);
-		}
 	}
 	return (NULL);
 }

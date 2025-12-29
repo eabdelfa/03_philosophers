@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:07 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:55:38 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:10:21 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,10 +99,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 	{
-		ft_putstr_fd("Usage:\n", 2);
-		ft_putstr_fd("./philo_bonus number_of_philosophers time_to_die ", 2);
-		ft_putstr_fd("time_to_eat time_to_sleep", 2);
-		ft_putstr_fd(" [number_of_times_each_philosopher_must_eat]\n", 2);
+		usage();
 		exit(EXIT_FAILURE);
 	}
 	if (validate_args(argc, argv))

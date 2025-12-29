@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:54:24 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:12:21 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int						validate_arg(int i, char *arg);
 
 /* Error Handling (error_bonus.c) */
 void					ft_putstr_fd(const char *s, int fd);
+void					usage(void);
 
 /* Initialization (init_bonus.c) */
 int						init_data(t_data *data, int argc, char **argv);

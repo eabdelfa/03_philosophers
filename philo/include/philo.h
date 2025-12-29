@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:04:42 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:54:21 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/29 05:13:46 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int						validate_arg(int i, char *arg);
 void					ft_putstr_fd(const char *s, int fd);
 void					destroy_mutexes(t_data *data);
 void					cleanup(t_data *data);
+void					usage(void);
 
 /* Initialization (init.c) */
 int						init_data(t_data *data, int argc, char **argv);
