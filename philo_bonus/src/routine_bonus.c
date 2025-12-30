@@ -6,11 +6,20 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 02:55:41 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/30 20:02:57 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+void	close_and_unlink_meal_sem(t_philo *philo)
+{
+	char name[30];
+
+	sem_close(philo->meal_sem);
+	make_sem_name(name, philo->id);
+	sem_unlink(name);
+}
 
 /*
 ** monitor_routine:
@@ -32,8 +41,8 @@ void	*monitor_routine(void *philo_ptr)
 			sem_wait(philo->data->sem_write);
 			printf("%lld %d died\n", get_time() - philo->data->start_time,
 				philo->id);
-			sem_close(philo->meal_sem);
-			exit(1);
+			close_and_unlink_meal_sem(philo);
+			exit(EXIT_FAILURE);
 		}
 		sem_post(philo->meal_sem);
 		usleep(1000);
@@ -73,14 +82,14 @@ static void	philo_life_loop(t_philo *philo)
 	{
 		if (philo->data->stop_flag)
 		{
-			sem_close(philo->meal_sem);
+			close_and_unlink_meal_sem(philo);
 			exit(0);
 		}
 		eat(philo);
 		if (philo->data->must_eat_count != -1
 			&& philo->meals_eaten >= philo->data->must_eat_count)
 		{
-			sem_close(philo->meal_sem);
+			close_and_unlink_meal_sem(philo);
 			exit(0);
 		}
 		print_msg("is sleeping", philo);
@@ -90,7 +99,7 @@ static void	philo_life_loop(t_philo *philo)
 		{
 			if (philo->data->time_to_eat >= philo->data->time_to_sleep)
 				ft_usleep((philo->data->time_to_eat
-						- philo->data->time_to_sleep) * 1.1);
+					- philo->data->time_to_sleep) * 1.1);
 		}
 	}
 }

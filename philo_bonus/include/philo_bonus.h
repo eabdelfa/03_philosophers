@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:22 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/29 05:53:40 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/30 20:09:19 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,7 @@ void					make_sem_name(char *buffer, int id);
 /* Philosopher Routine (routine_bonus.c) */
 void					philo_process(t_philo *philo);
 void					*monitor_routine(void *philo_ptr);
+void					eat(t_philo *philo);
+void					close_and_unlink_meal_sem(t_philo *philo);
 
 #endif
