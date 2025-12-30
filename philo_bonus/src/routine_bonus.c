@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 00:05:30 by eabdelfa          #+#    #+#             */
-/*   Updated: 2025/12/30 20:11:11 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2025/12/30 20:41:53 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	close_and_unlink_meal_sem(t_philo *philo)
 {
-	char name[30];
+	char	name[30];
 
 	sem_close(philo->meal_sem);
 	make_sem_name(name, philo->id);
@@ -99,7 +99,7 @@ static void	philo_life_loop(t_philo *philo)
 		{
 			if (philo->data->time_to_eat >= philo->data->time_to_sleep)
 				ft_usleep((philo->data->time_to_eat
-					- philo->data->time_to_sleep) * 1.1);
+						- philo->data->time_to_sleep) * 1.1);
 		}
 	}
 }
