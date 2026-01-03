@@ -1,13 +1,19 @@
 ```mermaid
 flowchart TD
     A[Start] --> B[Parse Arguments]
-    B --> C[Initialize Data & Semaphores]
-    C --> D{Initialization Success?}
-    D -- No --> E[Print Error & Exit]
-    D -- Yes --> F[Create Philosopher Processes]
+    B --> B1{Arguments Valid?}
+    B1 -- No --> E1[Print Arg Error & Exit]
+    B1 -- Yes --> C[Initialize Data & Semaphores]
+    C --> C1{Semaphores/Data Init Success?}
+    C1 -- No --> E[Print Init Error & Exit]
+    C1 -- Yes --> F[Create Philosopher Processes]
     F --> G[Each Process: Start Monitor Thread]
-    G --> MT[Monitor Thread: Check Death]
-    G --> X[Philosopher Life Loop]
+    G --> MT[Monitor Thread: Check Death/Meals]
+    MT --> MT1{Philosopher Died?}
+    MT1 -- Yes --> J[Signal Stop & Cleanup]
+    MT1 -- No --> MT2{Philosopher Ate Enough?}
+    MT2 -- Yes --> J[Signal Stop & Cleanup]
+    MT2 -- No --> X[Philosopher Life Loop]
     X --> H1[Wait for Forks - sem_wait forks]
     H1 --> H2[Take Forks - print status]
     H2 --> H3[Lock Meal Semaphore - sem_wait meal_sem]
@@ -22,5 +28,8 @@ flowchart TD
     J --> K[Exit Process]
     F --> L[Parent: Wait for Children]
     L --> L1[Parent: Waitpid for Child Exit Status]
-    L1 --> M[Parent: Cleanup & Exit]
+    L1 --> L2{All Children Exited?}
+    L2 -- No --> L1
+    L2 -- Yes --> M[Parent: Cleanup & Unlink Semaphores]
+    M --> N[Parent: Exit]
 ```
