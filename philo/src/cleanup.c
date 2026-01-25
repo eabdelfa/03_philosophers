@@ -17,6 +17,7 @@ static void	destroy_forks(t_rules *rules)
 	int	i;
 
 	i = 0;
+	while (i < rules->forks_init)
 	{
 		pthread_mutex_destroy(&rules->forks[i]);
 		i++;
