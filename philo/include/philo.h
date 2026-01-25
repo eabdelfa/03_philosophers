@@ -6,13 +6,14 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:17 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 11:58:08 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <limits.h>
 # include <pthread.h>
 # include <stdio.h>
 # include <stdlib.h>

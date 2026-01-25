@@ -6,12 +6,11 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:02:46 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 17:02:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <limits.h>
 
 static int	parse_and_set_timings(t_rules *rules, char **av)
 {

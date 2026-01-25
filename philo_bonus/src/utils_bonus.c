@@ -6,12 +6,11 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:04:59 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 17:02:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
-#include <limits.h>
 
 int	is_positive_number(char *s)
 {
