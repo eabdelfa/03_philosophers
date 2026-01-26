@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:17 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:17:11 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ struct					s_rules
 };
 
 int						init_rules(t_rules *rules, int ac, char **av);
+int						parse_rules(t_rules *rules, int ac, char **av);
 int						init_philos(t_rules *rules);
 int						init_mutexes(t_rules *rules);
 void					cleanup_partial_init(t_rules *rules);

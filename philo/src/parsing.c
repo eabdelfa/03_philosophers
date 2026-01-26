@@ -6,11 +6,11 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 00:00:00 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/26 00:00:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/26 18:17:11 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_bonus.h"
+#include "philo.h"
 
 static int	validate_args(char **av)
 {

@@ -6,7 +6,7 @@
 #    By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/01/22 23:03:02 by eabdelfa          #+#    #+#              #
-#    Updated: 2026/01/23 11:58:08 by eabdelfa         ###   ########.fr        #
+#    Updated: 2026/01/26 18:17:11 by eabdelfa         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CFLAGS += -Iinclude
 
 SRC_DIR = src
 SRCS = main.c init.c routine.c monitor.c time.c utils.c cleanup.c start.c \
-	   forks.c meal.c mutex.c philo_init.c print.c sync.c error.c
+	   forks.c meal.c mutex.c philo_init.c print.c sync.c error.c parsing.c
 OBJS = $(addprefix $(SRC_DIR)/,$(SRCS:.c=.o))
 VPATH = $(SRC_DIR)
 
