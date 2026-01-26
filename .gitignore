@@ -1,0 +1,61 @@
+# Compiled object files
+*.o
+*.obj
+
+# Executables
+philo/philo
+philo_bonus/philo_bonus
+*.exe
+*.out
+
+# Build directories
+build/
+dist/
+*.a
+*.so
+*.dylib
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.vim
+.netrwhist
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+.directory
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs
+*.log
+
+# Dependencies
+node_modules/
