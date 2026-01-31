@@ -108,7 +108,6 @@ philo_new/
         ├── meal_bonus.c
         ├── forks_bonus.c
         ├── sem_init_bonus.c
-        ├── sem_name_bonus.c
         ├── print_bonus.c
         ├── cleanup_bonus.c
         ├── time_bonus.c
@@ -147,7 +146,7 @@ philo_new/
 **Key Functions:**
 
 - `child_process()` - Each philosopher process runs this
-- `monitor_simulation_bonus()` - Watches for death
+- `monitor_routine()` - Monitor thread watches for death
 - `sem_wait/sem_post()` - Synchronization primitives
 - `make_sem_name()` - Generates unique semaphore names using PID and timestamp
 

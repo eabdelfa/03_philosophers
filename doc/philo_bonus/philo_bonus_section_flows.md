@@ -7,14 +7,12 @@ flowchart TD
     MAIN([main])
     INIT_RULES([init_rules])
     SEM_INIT([sem_init_bonus])
-    SEM_NAME([sem_name_bonus])
     INIT_PHILOS([init_philos])
     CLEANUP([cleanup_rules])
     PRINT_USAGE([print_usage])
 
     MAIN --> INIT_RULES
     INIT_RULES --> SEM_INIT
-    INIT_RULES --> SEM_NAME
     INIT_RULES -->|on error| CLEANUP
     INIT_RULES -->|usage error| PRINT_USAGE
     MAIN --> INIT_PHILOS
@@ -23,7 +21,7 @@ flowchart TD
 
 **Details:**
 - `main` initializes rules and philosophers using semaphores instead of mutexes
-- `init_rules` calls `sem_init_bonus` to create named semaphores and `sem_name_bonus` to generate semaphore names
+- `init_rules` calls `sem_init_bonus` to create named semaphores (make_sem_name is now integrated)
 - Semaphores are used for inter-process synchronization (different from mandatory part which uses threads)
 - Errors trigger full cleanup via `cleanup_rules`
 - Usage errors display help via `print_usage`
