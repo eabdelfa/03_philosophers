@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parsing_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/26 00:00:00 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/26 00:00:00 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:48:37 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,6 @@ static int	parse_must_eat(t_rules *rules, int ac, char **av)
 	return (1);
 }
 
-static int	validate_timings(t_rules *rules)
-{
-	if (rules->num <= 0 || rules->t_die <= 0 || rules->t_eat <= 0
-		|| rules->t_sleep <= 0)
-	{
-		print_error("all time values must be greater than 0");
-		return (0);
-	}
-	return (1);
-}
-
 int	parse_rules(t_rules *rules, int ac, char **av)
 {
 	if (!validate_args(av))
@@ -89,8 +78,6 @@ int	parse_rules(t_rules *rules, int ac, char **av)
 	if (!parse_and_set_timings(rules, av))
 		return (0);
 	if (!parse_must_eat(rules, ac, av))
-		return (0);
-	if (!validate_timings(rules))
 		return (0);
 	return (1);
 }
