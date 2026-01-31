@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:00:00 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/31 16:57:50 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/31 18:19:57 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@ static char	*make_sem_name(char *base)
 {
 	char	*pid_str;
 	char	*time_str;
-	char	*tmp;
+	char	*tmp1;
+	char	*tmp2;
 	char	*name;
 
 	pid_str = ft_itoa((int)getpid());
 	time_str = ft_itoa((int)(get_time_ms() % 100000));
-	tmp = ft_strjoin(base, "_");
-	name = ft_strjoin(tmp, pid_str);
-	name = ft_strjoin(name, time_str);
+	tmp1 = ft_strjoin(base, "_");
+	tmp2 = ft_strjoin(tmp1, pid_str);
+	name = ft_strjoin(tmp2, time_str);
 	free(pid_str);
 	free(time_str);
-	free(tmp);
+	free(tmp1);
+	free(tmp2);
 	return (name);
 }
 
