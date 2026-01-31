@@ -58,7 +58,7 @@ make re       # Rebuild from scratch
 | time_to_die                               | int            | Milliseconds before philosopher dies without eating |
 | time_to_eat                               | int            | Milliseconds to eat (forks held)                    |
 | time_to_sleep                             | int            | Milliseconds to sleep after eating                  |
-| number_of_times_each_philosopher_must_eat | int (optional) | Meals required per philosopher (bonus only)         |
+| number_of_times_each_philosopher_must_eat | int (optional) | Meals required per philosopher        |
 
 ### Example Usage
 
@@ -171,12 +171,11 @@ THINKING -> (wait for forks) -> EATING -> (sleep) -> THINKING
 
 **Bonus (Semaphores):**
 
-1. Wait on left fork semaphore (sem_wait)
-2. Wait on right fork semaphore (sem_wait)
+1. Wait on forks semaphore - first acquisition (sem_wait)
+2. Wait on forks semaphore - second acquisition (sem_wait)
 3. Eat for time_to_eat milliseconds
-4. Post left and right fork semaphores (sem_post)
-5. Sleep for time_to_sleep milliseconds
-6. Return to thinking
+4. Post forks semaphore - first release (sem_post)
+5. Post forks semaphore - second release (sem_post)
 
 ### Death Detection
 
@@ -187,9 +186,11 @@ Monitor checks each philosopher's `last_meal` timestamp:
 
 ### Completion Conditions
 
-**Mandatory**: No specific completion (runs until philosopher dies or terminated)
+Both versions stop execution when any of these conditions occur:
 
-**Bonus**: Simulation completes when all philosophers have eaten `number_of_times_each_philosopher_must_eat` meals
+1. **Philosopher Death**: If any philosopher goes without eating longer than `time_to_die`, they die and simulation stops
+2. **Meal Goal Reached** (optional): If 5th parameter provided, simulation completes when all philosophers have eaten `number_of_times_each_philosopher_must_eat` times
+3. **User Termination**: Press Ctrl+C to stop the simulation
 
 ## Key Features
 
@@ -279,7 +280,7 @@ Visualize the philosopher interactions in real-time using the 42 Course Philosop
 | Sync    | Mutexes     | Semaphores       |
 | Memory  | Shared heap | Isolated (COW)   |
 | Forks   | Mutex array | Named semaphores |
-| Meals   | Optional    | Enforced         |
+| Meals   | Optional    | Optional         |
 
 ### Performance Notes
 
