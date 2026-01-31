@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:04:39 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:57:50 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,5 @@ void					print_state(t_philo *philo, char *msg);
 void					print_error(char *msg);
 void					print_usage(void);
 int						error_exit(char *msg, int code);
-char					*make_sem_name(char *base);
 
 #endif

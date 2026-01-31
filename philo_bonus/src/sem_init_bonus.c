@@ -6,15 +6,28 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/23 12:00:00 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/25 21:24:20 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/01/31 16:57:50 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-static char	*make_name(char *base)
+static char	*make_sem_name(char *base)
 {
-	return (make_sem_name(base));
+	char	*pid_str;
+	char	*time_str;
+	char	*tmp;
+	char	*name;
+
+	pid_str = ft_itoa((int)getpid());
+	time_str = ft_itoa((int)(get_time_ms() % 100000));
+	tmp = ft_strjoin(base, "_");
+	name = ft_strjoin(tmp, pid_str);
+	name = ft_strjoin(name, time_str);
+	free(pid_str);
+	free(time_str);
+	free(tmp);
+	return (name);
 }
 
 static void	cleanup_sem_names(t_rules *rules)
@@ -53,8 +66,8 @@ static int	create_print_sem(t_rules *rules)
 
 int	open_sems(t_rules *rules)
 {
-	rules->forks_name = make_name("/philo_forks");
-	rules->print_name = make_name("/philo_print");
+	rules->forks_name = make_sem_name("/philo_forks");
+	rules->print_name = make_sem_name("/philo_print");
 	if (!rules->forks_name || !rules->print_name)
 	{
 		print_error("failed to generate semaphore names");
