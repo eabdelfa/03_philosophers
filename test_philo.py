@@ -180,6 +180,13 @@ def get_mandatory_tests() -> List[TestCase]:
 			expected_death=False,
 			description="Stress test with 200 philosophers"
 		),
+		TestCase(
+			name="Optional arg is zero (must_eat=0)",
+			args=["5", "800", "200", "200", "0"],
+			timeout=5,
+			expected_death=False,
+			description="With must_eat=0, simulation stops immediately without eating"
+		),
 	]
 
 
@@ -243,6 +250,13 @@ def get_bonus_tests() -> List[TestCase]:
 			timeout=30,
 			expected_death=False,
 			description="Stress test with 200 processes"
+		),
+		TestCase(
+			name="Optional arg is zero (must_eat=0)",
+			args=["5", "800", "200", "200", "0"],
+			timeout=5,
+			expected_death=False,
+			description="With must_eat=0, all child processes exit immediately without eating"
 		),
 	]
 
