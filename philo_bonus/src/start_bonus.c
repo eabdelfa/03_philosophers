@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:04:49 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 17:02:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:39:33 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	start_simulation(t_rules *rules)
 		{
 			print_error("failed to create child process");
 			kill_all(rules);
-			return (0);
+			return (1);
 		}
 		if (child_pid == 0)
 			child_process(rules, philo_idx + 1);
@@ -74,5 +74,5 @@ int	start_simulation(t_rules *rules)
 	result = wait_children(rules);
 	if (result == 1 || result == 2)
 		kill_all(rules);
-	return (1);
+	return (0);
 }

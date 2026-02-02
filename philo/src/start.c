@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:34 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 17:02:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 19:39:16 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	start_simulation(t_rules *rules)
 			pthread_join(rules->philos[philo_idx].thread, NULL);
 			philo_idx++;
 		}
-		return (0);
+		return (1);
 	}
 	monitor_simulation(rules);
 	philo_idx = 0;
@@ -59,5 +59,5 @@ int	start_simulation(t_rules *rules)
 		pthread_join(rules->philos[philo_idx].thread, NULL);
 		philo_idx++;
 	}
-	return (1);
+	return (0);
 }
