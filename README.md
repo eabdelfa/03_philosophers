@@ -1,8 +1,10 @@
+_This project has been created as part of the 42 curriculum by <eabdelfa>._
+
 # Philosophers - Concurrent Programming Project
 
 A multithreaded/multiprocess simulation of the classic Dining Philosophers problem with two implementations: one using POSIX threads and mutexes (mandatory), and another using processes and semaphores (bonus).
 
-## Project Overview
+## Description
 
 The Philosophers project simulates a dining philosophers scenario where N philosophers sit around a table, each with a fork on both sides. Philosophers alternate between thinking and eating. To eat, a philosopher must acquire both adjacent forks. The challenge is to implement concurrent access to shared resources without deadlock or starvation.
 
@@ -12,23 +14,25 @@ The Philosophers project simulates a dining philosophers scenario where N philos
 - **Output**: Timestamped log of each philosopher's state changes
 - **Goal**: Ensure no philosopher dies and (optionally) all philosophers eat the required number of meals
 
-## Building the Project
+## Instructions
 
-### Mandatory Implementation (Threads + Mutexes)
+### Compilation
+
+#### Mandatory Implementation (Threads + Mutexes)
 
 ```bash
 cd philo
 make
 ```
 
-### Bonus Implementation (Processes + Semaphores)
+#### Bonus Implementation (Processes + Semaphores)
 
 ```bash
 cd philo_bonus
 make
 ```
 
-### Clean Compiled Files
+#### Clean Compiled Files
 
 ```bash
 make clean    # Remove .o files
@@ -36,21 +40,21 @@ make fclean   # Remove .o files and executable
 make re       # Rebuild from scratch
 ```
 
-## Running the Simulations
+### Execution
 
-### Mandatory Version
+#### Mandatory Version
 
 ```bash
 ./philo <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
 ```
 
-### Bonus Version
+#### Bonus Version
 
 ```bash
 ./philo_bonus <number_of_philosophers> <time_to_die> <time_to_eat> <time_to_sleep> [number_of_times_each_philosopher_must_eat]
 ```
 
-### Parameters
+#### Parameters
 
 | Parameter                                 | Type           | Description                                         |
 | ----------------------------------------- | -------------- | --------------------------------------------------- |
@@ -58,9 +62,9 @@ make re       # Rebuild from scratch
 | time_to_die                               | int            | Milliseconds before philosopher dies without eating |
 | time_to_eat                               | int            | Milliseconds to eat (forks held)                    |
 | time_to_sleep                             | int            | Milliseconds to sleep after eating                  |
-| number_of_times_each_philosopher_must_eat | int (optional) | Meals required per philosopher        |
+| number_of_times_each_philosopher_must_eat | int (optional) | Meals required per philosopher                      |
 
-### Example Usage
+#### Example Usage
 
 ```bash
 # 4 philosophers, 410ms to die, 200ms to eat, 200ms to sleep
@@ -330,8 +334,19 @@ The implementation prioritizes correctness and clarity while maintaining code qu
 
 ## Resources
 
-- [POSIX Threads Documentation](https://man7.org/linux/man-pages/man7/pthreads.7.html)
-- [POSIX Semaphores](https://man7.org/linux/man-pages/man7/sem_overview.7.html)
-- [Valgrind Manual](https://valgrind.org/docs/manual/)
-- [Data Flow Documentation](doc/philosophers_FD.md)
+### Classic References
 
+- [POSIX Threads Documentation](https://man7.org/linux/man-pages/man7/pthreads.7.html) - Comprehensive POSIX threading reference
+- [POSIX Semaphores](https://man7.org/linux/man-pages/man7/sem_overview.7.html) - IPC semaphore mechanisms
+- [The Dining Philosophers Problem - Wikipedia](https://en.wikipedia.org/wiki/Dining_philosophers_problem) - Classic concurrent programming problem
+- [Valgrind Manual](https://valgrind.org/docs/manual/) - Memory debugging and profiling tool
+- [Data Flow Documentation](doc/philosophers_FD.md) - Project-specific architecture documentation
+
+### AI Usage
+
+AI was used for general project support and guidance:
+
+- **Project Understanding**: Explaining concurrent programming concepts and the dining philosophers problem
+- **Research & Reference**: Identifying and organizing relevant documentation and learning resources
+- **Documentation Structure**: Planning and organizing README content and technical documentation
+- **General Guidance**: Providing general advice on project architecture and best practices
