@@ -333,3 +333,4 @@ The implementation prioritizes correctness and clarity while maintaining code qu
 - [POSIX Semaphores](https://man7.org/linux/man-pages/man7/sem_overview.7.html)
 - [Valgrind Manual](https://valgrind.org/docs/manual/)
 - [Data Flow Documentation](doc/philosophers_FD.md)
+- [Time Management Flow (philo)](doc/philo/philo_time_management.md)
