@@ -195,7 +195,8 @@ Both versions stop execution when any of these conditions occur:
 ## Key Features
 
 - **Thread Safety**: All shared data protected by mutexes/semaphores
-- **Timestamp Output**: Each action logged with millisecond precision
+- **Precise Time Management**: Millisecond-accurate timing using custom sleep implementation ([see detailed documentation](doc/philo/TIME_MANAGEMENT.md))
+- **Timestamp Output**: Each action logged with millisecond precision relative to simulation start
 - **Memory Efficient**: Proper cleanup and freeing of all resources
 - **Deadlock Prevention**: Philosopher numbering ensures consistent fork ordering
 - **Starvation Avoidance**: Fair scheduling through OS kernel
@@ -333,3 +334,4 @@ The implementation prioritizes correctness and clarity while maintaining code qu
 - [POSIX Semaphores](https://man7.org/linux/man-pages/man7/sem_overview.7.html)
 - [Valgrind Manual](https://valgrind.org/docs/manual/)
 - [Data Flow Documentation](doc/philosophers_FD.md)
+- [Time Management Documentation](doc/philo/TIME_MANAGEMENT.md)
