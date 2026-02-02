@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:04:44 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 17:02:44 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:09:45 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static int	setup_child_philo(t_rules *rules, int id, t_philo *philo)
 
 static void	philo_loop(t_rules *rules, t_philo *philo)
 {
+	if (rules->has_must && rules->must_eat == 0)
+		exit(0);
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (1)

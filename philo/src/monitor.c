@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:10 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/01/23 16:45:32 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:01:03 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,11 @@ static int	check_death(t_rules *rules)
 
 void	monitor_simulation(t_rules *rules)
 {
+	if (all_ate_enough(rules))
+	{
+		set_stop(rules);
+		return ;
+	}
 	while (!get_stop(rules))
 	{
 		if (check_death(rules))

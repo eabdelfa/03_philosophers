@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:34 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/02/02 19:39:16 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:01:03 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@ int	start_simulation(t_rules *rules)
 	int	philo_idx;
 	int	threads_created;
 
+	if (rules->has_must && rules->must_eat == 0)
+	{
+		set_stop(rules);
+		return (0);
+	}
 	rules->start = get_time_ms();
 	threads_created = create_threads(rules);
 	if (threads_created != rules->num)
