@@ -6,7 +6,7 @@
 /*   By: eabdelfa <eabdelfa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/22 23:03:34 by eabdelfa          #+#    #+#             */
-/*   Updated: 2026/02/02 23:01:03 by eabdelfa         ###   ########.fr       */
+/*   Updated: 2026/02/02 23:19:09 by eabdelfa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,20 @@ static int	create_threads(t_rules *rules)
 	return (philo_idx);
 }
 
-int	start_simulation(t_rules *rules)
+static void	join_threads(t_rules *rules, int count)
 {
 	int	philo_idx;
+
+	philo_idx = 0;
+	while (philo_idx < count)
+	{
+		pthread_join(rules->philos[philo_idx].thread, NULL);
+		philo_idx++;
+	}
+}
+
+int	start_simulation(t_rules *rules)
+{
 	int	threads_created;
 
 	if (rules->has_must && rules->must_eat == 0)
@@ -49,20 +60,10 @@ int	start_simulation(t_rules *rules)
 	{
 		print_error("failed to create all philosopher threads");
 		set_stop(rules);
-		philo_idx = 0;
-		while (philo_idx < threads_created)
-		{
-			pthread_join(rules->philos[philo_idx].thread, NULL);
-			philo_idx++;
-		}
+		join_threads(rules, threads_created);
 		return (1);
 	}
 	monitor_simulation(rules);
-	philo_idx = 0;
-	while (philo_idx < rules->num)
-	{
-		pthread_join(rules->philos[philo_idx].thread, NULL);
-		philo_idx++;
-	}
+	join_threads(rules, rules->num);
 	return (0);
 }
